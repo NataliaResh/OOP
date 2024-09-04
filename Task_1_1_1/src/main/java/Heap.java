@@ -1,7 +1,6 @@
 public class Heap {
     int[] heap;
 
-
     public Heap(int[] array) {
         heap = array;
         heapify();
