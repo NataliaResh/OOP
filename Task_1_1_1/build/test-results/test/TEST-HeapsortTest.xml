@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HeapsortTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-09-06T12:21:14" hostname="natalia-RLEF-XX" time="0.066">
+<testsuite name="HeapsortTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-09-07T06:57:05" hostname="LAPTOP-ALBNQOLJ" time="0.054">
   <properties/>
-  <testcase name="emptyArray()" classname="HeapsortTest" time="0.045"/>
-  <testcase name="reverseArray()" classname="HeapsortTest" time="0.002"/>
-  <testcase name="evenLenArray()" classname="HeapsortTest" time="0.002"/>
-  <testcase name="oddLenArray()" classname="HeapsortTest" time="0.002"/>
-  <testcase name="repeatArray()" classname="HeapsortTest" time="0.002"/>
-  <testcase name="sortedArray()" classname="HeapsortTest" time="0.002"/>
+  <testcase name="emptyArray()" classname="HeapsortTest" time="0.044"/>
+  <testcase name="reverseArray()" classname="HeapsortTest" time="0.001"/>
+  <testcase name="evenLenArray()" classname="HeapsortTest" time="0.001"/>
+  <testcase name="oddLenArray()" classname="HeapsortTest" time="0.001"/>
+  <testcase name="repeatArray()" classname="HeapsortTest" time="0.0"/>
+  <testcase name="sortedArray()" classname="HeapsortTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

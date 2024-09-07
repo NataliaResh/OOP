@@ -8,7 +8,8 @@ public class Heap {
     int[] heap;
 
     /**
-     *  Constructor of new object
+     * Constructor of new object
+     *
      * @param array array what be heapified
      */
     public Heap(int[] array) {
@@ -29,6 +30,7 @@ public class Heap {
 
     /**
      * Swaps two elements in array {@link Heap#heap}
+     *
      * @param i first index
      * @param j second index
      */
@@ -40,7 +42,8 @@ public class Heap {
 
     /**
      * Sifts down element on position {@code index}
-     * @param len current len of heap
+     *
+     * @param len   current len of heap
      * @param index index of element
      */
     public void siftDown(int len, int index) {
