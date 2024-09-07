@@ -1,11 +1,11 @@
 /**
- * Class for heapsort
+ * Class for heapsort.
  */
 public class Heapsort {
     /**
-     * Sorts array of integers using heapsort
+     * Sorts array of integers using heapsort.
      *
-     * @param array array of integers
+     * @param array array of integers.
      */
     static void heapsort(int[] array) {
         Heap heap = new Heap(array);

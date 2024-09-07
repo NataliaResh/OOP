@@ -1,16 +1,16 @@
 /**
- * Class for manage max-heap
+ * Class for manage max-heap.
  */
 public class Heap {
     /**
-     * Private field {@code heap}
+     * Private field {@code heap}.
      */
     int[] heap;
 
     /**
-     * Constructor of new object
+     * Constructor of new object.
      *
-     * @param array array what be heapified
+     * @param array array what be heapified.
      */
     public Heap(int[] array) {
         heap = array;
@@ -18,7 +18,7 @@ public class Heap {
     }
 
     /**
-     * Converts array {@link Heap#heap} to max-heap
+     * Converts array {@link Heap#heap} to max-heap.
      */
     private void heapify() {
         int len = heap.length;
@@ -29,10 +29,10 @@ public class Heap {
     }
 
     /**
-     * Swaps two elements in array {@link Heap#heap}
+     * Swaps two elements in array {@link Heap#heap}.
      *
-     * @param i first index
-     * @param j second index
+     * @param i first index.
+     * @param j second index.
      */
     public void swap(int i, int j) {
         int temp = heap[i];
@@ -41,10 +41,10 @@ public class Heap {
     }
 
     /**
-     * Sifts down element on position {@code index}
+     * Sifts down element on position {@code index}.
      *
-     * @param len   current len of heap
-     * @param index index of element
+     * @param len   current len of heap.
+     * @param index index of element.
      */
     public void siftDown(int len, int index) {
         int left = 2 * index + 1;
