@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
 /**
- * Class for testing heapsort
+ * Class for testing heapsort.
  */
 public class HeapsortTest {
     @Test
