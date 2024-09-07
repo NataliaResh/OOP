@@ -1,12 +1,24 @@
-import org.junit.jupiter.api.Test;
+package heapsort;
 
+import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
+/**
+ * Class for testing heapsort
+ */
 public class HeapsortTest {
     @Test
     public void emptyArray() {
         int[] array = {};
         int[] result = {};
+        Heapsort.heapsort(array);
+        Assert.assertEquals(array, result);
+    }
+
+    @Test
+    public void oneElementArray() {
+        int[] array = {0};
+        int[] result = {0};
         Heapsort.heapsort(array);
         Assert.assertEquals(array, result);
     }

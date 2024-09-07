@@ -1,3 +1,5 @@
+package heapsort;
+
 /**
  * Class for heapsort.
  */
@@ -8,11 +10,11 @@ public class Heapsort {
      * @param array array of integers.
      */
     static void heapsort(int[] array) {
-        Heap heap = new Heap(array);
+        Heap.heapify(array);
         int len = array.length;
         for (int i = len - 1; i > 0; i--) {
-            heap.swap(0, i);
-            heap.siftDown(i, 0);
+            Heap.swap(array,0, i);
+            Heap.siftDown(array, i, 0);
         }
     }
 }
