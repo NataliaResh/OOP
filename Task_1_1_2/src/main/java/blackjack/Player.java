@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player{
     private static final int ACE_WEIGHT = 12;
     public ArrayList<Card> cards = new ArrayList<>();
-    int score;
+    private int score;
 
 
     public void initPlayer(Pack pack) {
@@ -25,5 +25,8 @@ public class Player{
         return card;
     }
 
+    public int getScore() {
+        return score;
+    }
 
 }

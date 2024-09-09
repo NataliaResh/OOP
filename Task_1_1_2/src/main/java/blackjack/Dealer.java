@@ -7,9 +7,13 @@ public class Dealer extends Player{
         cards.get(1).close();
     }
 
-    public void openSecondCard() {
+    public void openClosedCard() {
+        getClosedCard().open();
+    }
+
+    public Card getClosedCard() {
         //TODO: exception
-        if (cards.size() != 2) return;
-        cards.get(1).open();
+        if (cards.size() != 2) return null;
+        return cards.get(1);
     }
 }

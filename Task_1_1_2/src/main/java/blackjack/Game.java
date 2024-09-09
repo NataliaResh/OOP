@@ -35,8 +35,6 @@ public class Game {
 
         playerMove();
 
-        dealer.openSecondCard();
-
         dealerMove();
         System.in.read();
         round++;
@@ -47,8 +45,13 @@ public class Game {
     }
 
     private void getCardsStatus() {
-        System.out.printf("Ваши карты: %s => %d\n", getCards(player), player.score);
-        System.out.println("Карты дилера: " + getCards(dealer));
+        System.out.printf("Ваши карты: %s => %d\n", getCards(player), player.getScore());
+        String dealerStatus = "Карты дилера: " + getCards(dealer);
+        if (!dealer.getClosedCard().isClosed()) {
+            dealerStatus += " => " + dealer.getScore();
+        }
+        System.out.println(dealerStatus);
+        System.out.println();
     }
 
     private void playerMove() throws IOException {
@@ -64,12 +67,14 @@ public class Game {
             if (result == '0') break;
             Card card = player.getCard(pack);
             System.out.printf("Вы открыли карту %s\n", card.toString());
-
             getCardsStatus();
         }
     }
 
     private void dealerMove() {
-        
+        System.out.println("Ход дилера\n-------");
+        dealer.openClosedCard();
+        System.out.printf("Дилер открывает закрытую карту %s\n", dealer.getClosedCard().toString());
+        getCardsStatus();
     }
 }

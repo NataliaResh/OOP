@@ -36,4 +36,8 @@ public class Card {
     public void close() {
         closed = true;
     }
+
+    public boolean isClosed() {
+        return closed;
+    }
 }
