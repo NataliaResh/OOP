@@ -12,7 +12,8 @@ public class Card {
 
     /**
      * Constructor for Card.
-     * @param name card's name;
+     *
+     * @param name   card's name;
      * @param weight card's weight.
      */
     public Card(String name, int weight) {
@@ -26,6 +27,7 @@ public class Card {
 
     /**
      * Returns card's {@link Card#weight}.
+     *
      * @return card's weight.
      */
     public int getWeight() {
@@ -43,6 +45,7 @@ public class Card {
 
     /**
      * Returns string of {@link Card#name} and {@link Card#weight}.
+     *
      * @return string of {@link Card#name} and {@link Card#weight}.
      */
     @Override
@@ -67,6 +70,7 @@ public class Card {
 
     /**
      * Checks if card is closed.
+     *
      * @return true if card is closed.
      */
     public boolean isClosed() {

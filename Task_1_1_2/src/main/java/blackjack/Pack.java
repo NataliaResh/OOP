@@ -42,6 +42,7 @@ public class Pack {
 
     /**
      * Takes next pseudo-random card from {@link Pack#packCards}.
+     *
      * @return next pseudo-random card from {@link Pack#packCards}.
      */
     public Card getCard() {

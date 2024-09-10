@@ -7,10 +7,12 @@ import java.util.Scanner;
  */
 public class Game {
     private static final int BOUND_DEALER_SCORE = 17;
+
     private enum InputPlayerResult {
         END_MOVE,
         CONTINUE_MOVE
     }
+
     private int round = 1;
     private Pack pack;
     Player player = new Player();
@@ -60,6 +62,7 @@ public class Game {
 
     /**
      * Finishes round.
+     *
      * @param winner winner of current round;
      * @param output log of current round.
      */
@@ -71,6 +74,7 @@ public class Game {
 
     /**
      * Checks if player or dealer has blackjack.
+     *
      * @return true if player or dealer has blackjack.
      */
     private boolean checkBlackjack() {
@@ -104,6 +108,7 @@ public class Game {
 
     /**
      * Returs score of current round.
+     *
      * @param startOutput result of round;
      * @return score of current round.
      */
@@ -119,6 +124,7 @@ public class Game {
 
     /**
      * Exits program with error.
+     *
      * @param error happened error.
      */
     private void exitWithLog(String error) {
@@ -140,6 +146,7 @@ public class Game {
 
     /**
      * Gets user's input.
+     *
      * @return user's decision.
      */
     private InputPlayerResult getPlayerResult() {
@@ -151,13 +158,13 @@ public class Game {
             exitWithLog("gg1");
         }
         switch (result) {
-            case 0 -> {
+            case 0:
                 return InputPlayerResult.END_MOVE;
-            }
-            case 1 -> {
+            case 1:
                 return InputPlayerResult.CONTINUE_MOVE;
-            }
-            default -> exitWithLog("gg");
+            default:
+                exitWithLog("gg");
+                break;
         }
         return InputPlayerResult.END_MOVE;
     }
@@ -169,13 +176,11 @@ public class Game {
         System.out.println("Ваш ход\n-------");
         while (true) {
             switch (getPlayerResult()) {
-                case END_MOVE -> {
+                case END_MOVE:
                     return;
-                }
-                case CONTINUE_MOVE -> {
+                case CONTINUE_MOVE:
                     getCard(player, "Вы открыли карту");
                     if (player.isLoser()) return;
-                }
             }
         }
     }
@@ -192,8 +197,9 @@ public class Game {
 
     /**
      * Manages taking new card.
+     *
      * @param currentPlayer player who taken new card;
-     * @param output start of log.
+     * @param output        start of log.
      */
     private void getCard(Player currentPlayer, String output) {
         Card card = currentPlayer.getCard(pack);
@@ -206,7 +212,8 @@ public class Game {
      */
     private void openDealerClosedCard() {
         System.out.println("\nХод дилера\n-------");
-        System.out.printf("Дилер открывает закрытую карту %s\n", dealer.openClosedCard().toString());
+        System.out.printf("Дилер открывает закрытую карту %s\n",
+                dealer.openClosedCard().toString());
         getCardsStatus();
     }
 }

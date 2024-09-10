@@ -10,10 +10,11 @@ public class Player {
     private static final int WIN_SCORE = 21;
     public ArrayList<Card> cards = new ArrayList<>();
     private int cardScore;
-     private int score;
+    private int score;
 
     /**
      * Resets player's params for new round.
+     *
      * @param pack current {@code pack} of cards.
      */
     public void initPlayer(Pack pack) {
@@ -25,6 +26,7 @@ public class Player {
 
     /**
      * Takes new card from {@code pack} and adds it to player's pack.
+     *
      * @param pack current {@code pack} of cards.
      * @return new {@code} card from {@code pack}.
      */
@@ -40,6 +42,7 @@ public class Player {
 
     /**
      * Returns score of player's pack.
+     *
      * @return score of player's pack.
      */
     public int getCardScore() {
@@ -48,6 +51,7 @@ public class Player {
 
     /**
      * Returns player's score (count of wins).
+     *
      * @return player's score.
      */
     public int getScore() {
@@ -63,6 +67,7 @@ public class Player {
 
     /**
      * Returns list of player's cards.
+     *
      * @return list of player's cards.
      */
     public String getCards() {
@@ -71,6 +76,7 @@ public class Player {
 
     /**
      * Checks if player is winner.
+     *
      * @return true if player is winner.
      */
     public boolean isWinner() {
@@ -79,6 +85,7 @@ public class Player {
 
     /**
      * Checks if player is loser.
+     *
      * @return true if player is loser.
      */
     public boolean isLoser() {

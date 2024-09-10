@@ -3,9 +3,10 @@ package blackjack;
 /**
  * Class for managing Dealer.
  */
-public class Dealer extends Player{
+public class Dealer extends Player {
     /**
      * Resets dealer's params for new round.
+     *
      * @param pack current {@code pack} of cards.
      */
     @Override
@@ -16,6 +17,7 @@ public class Dealer extends Player{
 
     /**
      * Opens closed second dealer's card.
+     *
      * @return current opened card.
      */
     public Card openClosedCard() {
@@ -26,6 +28,7 @@ public class Dealer extends Player{
 
     /**
      * Returns closed second dealer's card.
+     *
      * @return closed second dealer's card.
      */
     public Card getClosedCard() {
