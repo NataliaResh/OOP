@@ -50,7 +50,9 @@ public class Card {
      */
     @Override
     public String toString() {
-        if (closed) return "<закрытая карта>";
+        if (closed) {
+            return "<закрытая карта>";
+        }
         return name + " (" + weight + ')';
     }
 

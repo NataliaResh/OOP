@@ -9,26 +9,26 @@ import org.testng.Assert;
 public class CardTest {
     @Test
     public void changeAceTest() {
-        int ACE_WEIGHT = 11;
-        Card card = new Card("Ace", ACE_WEIGHT);
-        Assert.assertEquals(card.getWeight(), ACE_WEIGHT);
+        int aceWeight = 11;
+        Card card = new Card("Ace", aceWeight);
+        Assert.assertEquals(card.getWeight(), aceWeight);
         card.reduceWeight();
         Assert.assertEquals(card.getWeight(), 1);
     }
 
     @Test
     public void changeNoAceTest() {
-        int KING_WEIGHT = 10;
-        Card card = new Card("King", KING_WEIGHT);
-        Assert.assertEquals(card.getWeight(), KING_WEIGHT);
+        int kingWeight = 10;
+        Card card = new Card("King", kingWeight);
+        Assert.assertEquals(card.getWeight(), kingWeight);
         card.reduceWeight();
-        Assert.assertEquals(card.getWeight(), KING_WEIGHT);
+        Assert.assertEquals(card.getWeight(), kingWeight);
     }
 
     @Test
     public void openCloseCardTest() {
-        int KING_WEIGHT = 10;
-        Card card = new Card("King", KING_WEIGHT);
+        int kingWeight = 10;
+        Card card = new Card("King", kingWeight);
         Assert.assertFalse(card.isClosed());
         card.close();
         Assert.assertTrue(card.isClosed());
@@ -38,8 +38,8 @@ public class CardTest {
 
     @Test
     public void toStringTest() {
-        int KING_WEIGHT = 10;
-        Card card = new Card("King", KING_WEIGHT);
+        int kingWeight = 10;
+        Card card = new Card("King", kingWeight);
         Assert.assertEquals(card.toString(), "King (10)");
         card.close();
         Assert.assertEquals(card.toString(), "<закрытая карта>");

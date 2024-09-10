@@ -180,7 +180,11 @@ public class Game {
                     return;
                 case CONTINUE_MOVE:
                     getCard(player, "Вы открыли карту");
-                    if (player.isLoser()) return;
+                    if (player.isLoser()) {
+                        return;
+                    }
+                default:
+                    break;
             }
         }
     }

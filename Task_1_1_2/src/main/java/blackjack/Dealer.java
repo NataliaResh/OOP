@@ -33,7 +33,9 @@ public class Dealer extends Player {
      */
     public Card getClosedCard() {
         //TODO: exception
-        if (cards.size() < 2) return null;
+        if (cards.size() < 2) {
+            return null;
+        }
         return cards.get(1);
     }
 }
