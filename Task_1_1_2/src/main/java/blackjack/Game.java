@@ -1,12 +1,8 @@
 package blackjack;
 
-import java.io.IOException;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Game {
-    private static final int WIN_SCORE = 21;
     private static final int BOUND_DEALER_SCORE = 17;
 
     private enum InputPlayerResult {
@@ -20,19 +16,18 @@ public class Game {
     Player player = new Player();
     Dealer dealer = new Dealer();
 
-    public Game() {
+    Scanner scanner = new Scanner(System.in);
 
-    }
-
-    public void start() throws IOException {
+    public void play() {
+        System.out.println("Добро пожаловать в Блэкджек!");
         while (true) {
             playRound();
-
         }
+        //scanner.close();
     }
 
-    private void playRound() throws IOException {
-        System.out.printf("Раунд %d\n", round);
+    private void playRound() {
+        System.out.printf("\nРаунд %d\n", round);
 
         pack = new Pack();
 
@@ -40,14 +35,65 @@ public class Game {
         dealer.initPlayer(pack);
 
         System.out.println("Дилер раздал карты");
-
         getCardsStatus();
+        if (checkBlackjack()) {
+            return;
+        }
 
         playerMove();
+        if (player.isLoser()) {
+            endRound(dealer, "Дилер выиграл раунд! ");
+            return;
+        }
 
         dealerMove();
+        if (dealer.isLoser()) {
+            endRound(player, "Вы выграли раунд! ");
+            return;
+        }
+        checkWins();
+    }
 
+    private void endRound(Player winner, String output) {
+        winner.incScore();
+        System.out.println(getScore(output));
         round++;
+    }
+
+    private boolean checkBlackjack() {
+        if (!player.isWinner() || !dealer.isWinner()) {
+            return false;
+        }
+        if (player.isWinner() && dealer.isWinner()) {
+            dealer.incScore();
+            endRound(player, "Ничья! ");
+        } else if (player.isWinner()) {
+            endRound(player, "Вы выграли раунд! ");
+        } else {
+            endRound(dealer, "Дилер выиграл раунд! ");
+        }
+        return true;
+    }
+
+    private void checkWins() {
+        if (player.getCardScore() > dealer.getCardScore()) {
+            endRound(player, "Вы выграли раунд! ");
+        } else if (dealer.getCardScore() > player.getCardScore()) {
+            endRound(dealer, "Дилер выиграл раунд! ");
+        } else {
+            dealer.incScore();
+            endRound(player, "Ничья! ");
+        }
+    }
+
+    private String getScore(String startOutput) {
+        String score = "Счёт " + player.getScore() + ":" + dealer.getScore();
+        if (player.getScore() > dealer.getScore()) {
+            score += " в вашу пользу";
+        } else if (dealer.getScore() > player.getScore()) {
+            score += " в пользу дилера";
+        }
+        return startOutput + score + '.';
     }
 
     private void exitWithLog(String error) {
@@ -60,10 +106,10 @@ public class Game {
     }
 
     private void getCardsStatus() {
-        System.out.printf("Ваши карты: %s => %d\n", getCards(player), player.getScore());
+        System.out.printf("Ваши карты: %s => %d\n", getCards(player), player.getCardScore());
         String dealerStatus = "Карты дилера: " + getCards(dealer);
         if (!dealer.getClosedCard().isClosed()) {
-            dealerStatus += " => " + dealer.getScore();
+            dealerStatus += " => " + dealer.getCardScore();
         }
         System.out.println(dealerStatus);
         System.out.println();
@@ -72,13 +118,11 @@ public class Game {
     private InputPlayerResult getPlayerResult() {
         int result = 0;
         System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться...");
-        Scanner scanner = new Scanner(System.in);
         try {
             result = scanner.nextInt();
         } catch (Exception e) {
-            exitWithLog("gg");
+            exitWithLog("gg1");
         }
-        scanner.close();
         switch (result) {
             case 0 -> {
                 return InputPlayerResult.END_MOVE;
@@ -91,22 +135,26 @@ public class Game {
         return InputPlayerResult.END_MOVE;
     }
 
-    private void playerMove() throws IOException {
+    private void playerMove() {
         System.out.println("Ваш ход\n-------");
         while (true) {
             switch (getPlayerResult()) {
                 case END_MOVE -> {
                     return;
                 }
-                case CONTINUE_MOVE -> getCard(player, "Вы открыли карту");
+                case CONTINUE_MOVE -> {
+                    getCard(player, "Вы открыли карту");
+                    if (player.isLoser()) {
+                        return;
+                    }
+                }
             }
         }
     }
 
-
     private void dealerMove() {
         openDealerClosedCard();
-        while (dealer.getScore() < BOUND_DEALER_SCORE) {
+        while (dealer.getCardScore() < BOUND_DEALER_SCORE) {
             getCard(dealer, "Дилер открывает карту");
         }
     }
@@ -118,9 +166,8 @@ public class Game {
     }
 
     private void openDealerClosedCard() {
-        System.out.println("Ход дилера\n-------");
-        dealer.openClosedCard();
-        System.out.printf("Дилер открывает закрытую карту %s\n", dealer.getClosedCard().toString());
+        System.out.println("\nХод дилера\n-------");
+        System.out.printf("Дилер открывает закрытую карту %s\n", dealer.openClosedCard().toString());
         getCardsStatus();
     }
 }
