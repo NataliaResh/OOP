@@ -10,7 +10,7 @@ import java.util.Random;
  * Class for managing Pack of cards.
  */
 public class Pack {
-    private ArrayList<Card> packCards = new ArrayList<>(List.of(
+    protected ArrayList<Card> packCards = new ArrayList<>(List.of(
             new Card("Двойка Пики", 2), new Card("Тройка Пики", 3),
             new Card("Четвёрка Пики", 4), new Card("Пятёрка Пики", 5),
             new Card("Шестёрка Пики", 6), new Card("Семёрка Пики", 7),

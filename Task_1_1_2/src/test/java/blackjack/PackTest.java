@@ -12,5 +12,8 @@ public class PackTest {
         Pack pack = new Pack();
         Card card = pack.getCard();
         Assert.assertNotNull(card);
+        for (int i = 0; i < pack.packCards.size(); i++) {
+            Assert.assertNotEquals(card, pack.packCards.get(i));
+        }
     }
 }
