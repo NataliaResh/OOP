@@ -8,11 +8,17 @@ import static blackjack.GameIO.*;
 public class Game {
     private static final int BOUND_DEALER_SCORE = 17;
 
+    /**
+     * Types of players.
+     */
     public enum PlayerType {
         PLAYER,
         DEALER
     }
 
+    /**
+     * Results of round.
+     */
     public enum RoundResult {
         PLAYER_WIN,
         DEALER_WIN,

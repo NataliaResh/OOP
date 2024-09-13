@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import static blackjack.Game.*;
 
+/**
+ * Class for managing I/O.
+ */
 public class GameIO {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -21,10 +24,12 @@ public class GameIO {
                         return false;
                     case 1:
                         return true;
+                    default:
+                        System.out.println("Неверный ввод, попробуйте ещё раз!");
                 }
             } catch (Exception ignored) {
+                System.out.println("Неверный ввод, попробуйте ещё раз!");
             }
-            System.out.println("Неверный ввод, попробуйте ещё раз!");
         }
     }
 
@@ -61,6 +66,8 @@ public class GameIO {
                 break;
             case DRAW:
                 score += "Ничья!";
+                break;
+            default:
                 break;
         }
         score += "Счёт " + player.getScore() + ":" + dealer.getScore();
@@ -102,6 +109,8 @@ public class GameIO {
             case DEALER:
                 System.out.println("\nХод дилера\n-------");
                 System.out.println();
+            default:
+                break;
         }
     }
 
@@ -124,6 +133,8 @@ public class GameIO {
                 } else {
                     output = "Дилер открывает закрытую карту ";
                 }
+            default:
+                break;
         }
         System.out.println(output + card.toString());
     }

@@ -1,10 +1,10 @@
 package blackjack;
 
+import static blackjack.GameIO.exit;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static blackjack.GameIO.exit;
 
 /**
  * Class for managing Pack of cards.
