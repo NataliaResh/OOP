@@ -1,6 +1,6 @@
 package blackjack;
 
-import java.util.Scanner;
+import static blackjack.GameIO.*;
 
 /**
  * Class for managing Game.
@@ -8,22 +8,27 @@ import java.util.Scanner;
 public class Game {
     private static final int BOUND_DEALER_SCORE = 17;
 
-    private enum InputPlayerResult {
-        END_MOVE,
-        CONTINUE_MOVE
+    public enum PlayerType {
+        PLAYER,
+        DEALER
+    }
+
+    public enum RoundResult {
+        PLAYER_WIN,
+        DEALER_WIN,
+        DRAW
     }
 
     private int round = 1;
     private Pack pack;
-    Player player = new Player();
-    Dealer dealer = new Dealer();
-    Scanner scanner = new Scanner(System.in);
+    private final Player player = new Player();
+    private final Dealer dealer = new Dealer();
 
     /**
      * Starts game.
      */
     public void play() {
-        System.out.println("Добро пожаловать в Блэкджек!");
+        printStartGame();
         while (true) {
             playRound();
         }
@@ -33,28 +38,24 @@ public class Game {
      * Launches new round.
      */
     private void playRound() {
-        System.out.printf("\nРаунд %d\n", round);
-
         pack = new Pack();
-
         player.initPlayer(pack);
         dealer.initPlayer(pack);
 
-        System.out.println("Дилер раздал карты");
-        getCardsStatus();
+        printStartRound(round);
+        printCardsStatus(player, dealer);
         if (checkBlackjack()) {
             return;
         }
-
         playerMove();
         if (player.isLoser()) {
-            endRound(dealer, "Дилер выиграл раунд! ");
+            endRound(dealer, RoundResult.DEALER_WIN);
             return;
         }
 
         dealerMove();
         if (dealer.isLoser()) {
-            endRound(player, "Вы выграли раунд! ");
+            endRound(player, RoundResult.PLAYER_WIN);
             return;
         }
         checkWins();
@@ -64,12 +65,21 @@ public class Game {
      * Finishes round.
      *
      * @param winner winner of current round;
-     * @param output log of current round.
+     * @param result result of round.
      */
-    private void endRound(Player winner, String output) {
-        winner.incScore();
-        System.out.println(getScore(output));
-        round++;
+    private void endRound(Player winner, RoundResult result) {
+        if (winner != null) {
+            winner.incScore();
+            round++;
+        }
+        printScore(result, player, dealer);
+    }
+
+    /**
+     * Finishes round with no winner.
+     */
+    private void endRound() {
+        endRound(null, RoundResult.DRAW);
     }
 
     /**
@@ -82,12 +92,11 @@ public class Game {
             return false;
         }
         if (player.isWinner() && dealer.isWinner()) {
-            dealer.incScore();
-            endRound(player, "Ничья! ");
+            endRound();
         } else if (player.isWinner()) {
-            endRound(player, "Вы выграли раунд! ");
+            endRound(player, RoundResult.PLAYER_WIN);
         } else {
-            endRound(dealer, "Дилер выиграл раунд! ");
+            endRound(dealer, RoundResult.DEALER_WIN);
         }
         return true;
     }
@@ -97,94 +106,23 @@ public class Game {
      */
     private void checkWins() {
         if (player.getCardScore() > dealer.getCardScore()) {
-            endRound(player, "Вы выграли раунд! ");
+            endRound(player, RoundResult.PLAYER_WIN);
         } else if (dealer.getCardScore() > player.getCardScore()) {
-            endRound(dealer, "Дилер выиграл раунд! ");
+            endRound(dealer, RoundResult.DEALER_WIN);
         } else {
-            dealer.incScore();
-            endRound(player, "Ничья! ");
+            endRound();
         }
-    }
-
-    /**
-     * Returs score of current round.
-     *
-     * @param startOutput result of round;
-     * @return score of current round.
-     */
-    private String getScore(String startOutput) {
-        String score = "Счёт " + player.getScore() + ":" + dealer.getScore();
-        if (player.getScore() > dealer.getScore()) {
-            score += " в вашу пользу";
-        } else if (dealer.getScore() > player.getScore()) {
-            score += " в пользу дилера";
-        }
-        return startOutput + score + '.';
-    }
-
-    /**
-     * Exits program with error.
-     *
-     * @param error happened error.
-     */
-    private void exitWithLog(String error) {
-        System.out.println(error);
-        System.exit(1);
-    }
-
-    /**
-     * Prints player's and dealer's packs.
-     */
-    private void getCardsStatus() {
-        System.out.printf("Ваши карты: %s => %d\n", player.getCards(), player.getCardScore());
-        String dealerStatus = "Карты дилера: " + dealer.getCards();
-        if (!dealer.getClosedCard().isClosed()) {
-            dealerStatus += " => " + dealer.getCardScore();
-        }
-        System.out.println(dealerStatus + "\n");
-    }
-
-    /**
-     * Gets user's input.
-     *
-     * @return user's decision.
-     */
-    private InputPlayerResult getPlayerResult() {
-        int result = 0;
-        System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться...");
-        try {
-            result = scanner.nextInt();
-        } catch (Exception e) {
-            exitWithLog("gg1");
-        }
-        switch (result) {
-            case 0:
-                return InputPlayerResult.END_MOVE;
-            case 1:
-                return InputPlayerResult.CONTINUE_MOVE;
-            default:
-                exitWithLog("gg");
-                break;
-        }
-        return InputPlayerResult.END_MOVE;
     }
 
     /**
      * Manages player's move.
      */
     private void playerMove() {
-        System.out.println("Ваш ход\n-------");
-        while (true) {
-            switch (getPlayerResult()) {
-                case END_MOVE:
-                    return;
-                case CONTINUE_MOVE:
-                    getCard(player, "Вы открыли карту");
-                    if (player.isLoser()) {
-                        return;
-                    }
-                default:
-                    break;
+        printMove(PlayerType.PLAYER);
+        while (getPlayerInput()) {
+            getCard(PlayerType.PLAYER, player);
+            if (player.isLoser() || player.isWinner()) {
+                return;
             }
         }
     }
@@ -195,29 +133,28 @@ public class Game {
     private void dealerMove() {
         openDealerClosedCard();
         while (dealer.getCardScore() < BOUND_DEALER_SCORE) {
-            getCard(dealer, "Дилер открывает карту");
+            getCard(PlayerType.DEALER, dealer);
         }
     }
 
     /**
      * Manages taking new card.
      *
-     * @param currentPlayer player who taken new card;
-     * @param output        start of log.
+     * @param type          type of player;
+     * @param currentPlayer player who taken new card.
      */
-    private void getCard(Player currentPlayer, String output) {
+    private void getCard(PlayerType type, Player currentPlayer) {
         Card card = currentPlayer.getCard(pack);
-        System.out.printf("%s %s\n", output, card.toString());
-        getCardsStatus();
+        printGetCard(card, type, false);
+        printCardsStatus(player, dealer);
     }
 
     /**
      * Manages opening dealer's closed card.
      */
     private void openDealerClosedCard() {
-        System.out.println("\nХод дилера\n-------");
-        System.out.printf("Дилер открывает закрытую карту %s\n",
-                dealer.openClosedCard().toString());
-        getCardsStatus();
+        Card card = dealer.openClosedCard();
+        printGetCard(card, PlayerType.DEALER, true);
+        printCardsStatus(player, dealer);
     }
 }

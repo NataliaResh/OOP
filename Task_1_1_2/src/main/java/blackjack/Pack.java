@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static blackjack.GameIO.exit;
+
 /**
  * Class for managing Pack of cards.
  */
@@ -46,6 +48,9 @@ public class Pack {
      * @return next pseudo-random card from {@link Pack#packCards}.
      */
     public Card getCard() {
+        if (packCards.isEmpty()) {
+            exit("Pack is empty!");
+        }
         int index = generator.nextInt(packCards.size());
         Card currentCard = packCards.get(index);
         packCards.remove(index);

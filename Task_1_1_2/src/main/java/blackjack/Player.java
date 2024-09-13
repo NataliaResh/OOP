@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * Class for managing Player.
  */
 public class Player {
-    public static final int ACE_WEIGHT = 11;
-    private static final int WIN_SCORE = 21;
+    public static final int WIN_SCORE = 21;
     public ArrayList<Card> cards = new ArrayList<>();
     private int cardScore;
     private int score;
@@ -32,10 +31,7 @@ public class Player {
      */
     public Card getCard(Pack pack) {
         Card card = pack.getCard();
-        if (card.getWeight() == ACE_WEIGHT && cardScore + ACE_WEIGHT > 21) {
-            card.reduceWeight();
-        }
-        cardScore += card.getWeight();
+        cardScore += card.getWeight(cardScore);
         cards.add(card);
         return card;
     }

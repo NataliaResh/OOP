@@ -1,11 +1,12 @@
 package blackjack;
 
-import static blackjack.Player.ACE_WEIGHT;
+import static blackjack.Player.WIN_SCORE;
 
 /**
  * Class for managing card.
  */
 public class Card {
+    public static final int ACE_WEIGHT = 11;
     private final String name;
     private int weight;
     private boolean closed;
@@ -28,10 +29,23 @@ public class Card {
     /**
      * Returns card's {@link Card#weight}.
      *
+     * @param cardScore player's cards score.
+     * @return card's weight.
+     */
+    public int getWeight(int cardScore) {
+        if (weight == ACE_WEIGHT && cardScore + ACE_WEIGHT > WIN_SCORE) {
+            reduceWeight();
+        }
+        return weight;
+    }
+
+    /**
+     * Returns card's {@link Card#weight} (player's cards score is zero).
+     *
      * @return card's weight.
      */
     public int getWeight() {
-        return weight;
+        return getWeight(0);
     }
 
     /**
