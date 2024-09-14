@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -175,18 +175,13 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#exit(java.lang.String)">exit</a></span>&#8203;(java.lang.String&nbsp;error)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayerInput()">getPlayerInput</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns user's input.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printCardsStatus(blackjack.Player,blackjack.Dealer)">printCardsStatus</a></span>&#8203;(<a href="Player.html" title="class in blackjack">Player</a>&nbsp;player,
                 <a href="Dealer.html" title="class in blackjack">Dealer</a>&nbsp;dealer)</code></th>
@@ -194,7 +189,7 @@ extends java.lang.Object</pre>
 <div class="block">Prints player's and dealer's packs.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printGetCard(blackjack.Card,blackjack.Game.PlayerType,boolean)">printGetCard</a></span>&#8203;(<a href="Card.html" title="class in blackjack">Card</a>&nbsp;card,
             <a href="Game.PlayerType.html" title="enum in blackjack">Game.PlayerType</a>&nbsp;player,
@@ -203,14 +198,14 @@ extends java.lang.Object</pre>
 <div class="block">Prints information about received card.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printMove(blackjack.Game.PlayerType)">printMove</a></span>&#8203;(<a href="Game.PlayerType.html" title="enum in blackjack">Game.PlayerType</a>&nbsp;player)</code></th>
 <td class="colLast">
 <div class="block">Prints information about player's move.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printScore(blackjack.Game.RoundResult,blackjack.Player,blackjack.Dealer)">printScore</a></span>&#8203;(<a href="Game.RoundResult.html" title="enum in blackjack">Game.RoundResult</a>&nbsp;result,
           <a href="Player.html" title="class in blackjack">Player</a>&nbsp;player,
@@ -219,14 +214,14 @@ extends java.lang.Object</pre>
 <div class="block">Returns score of current round.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printStartGame()">printStartGame</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Prints information about start game.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printStartRound(int)">printStartRound</a></span>&#8203;(int&nbsp;round)</code></th>
 <td class="colLast">
@@ -365,7 +360,7 @@ extends java.lang.Object</pre>
 <a id="printGetCard(blackjack.Card,blackjack.Game.PlayerType,boolean)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>printGetCard</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;printGetCard&#8203;(<a href="Card.html" title="class in blackjack">Card</a>&nbsp;card,
@@ -378,15 +373,6 @@ extends java.lang.Object</pre>
 <dd><code>player</code> - current player;</dd>
 <dd><code>isClosed</code> - true if card is closed.</dd>
 </dl>
-</li>
-</ul>
-<a id="exit(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>exit</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;exit&#8203;(java.lang.String&nbsp;error)</pre>
 </li>
 </ul>
 </li>
