@@ -1,7 +1,5 @@
 package blackjack;
 
-import static blackjack.GameIO.exit;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +8,7 @@ import java.util.Random;
  * Class for managing Pack of cards.
  */
 public class Pack {
-    protected ArrayList<Card> packCards = new ArrayList<>(List.of(
+    private final ArrayList<Card> packCards = new ArrayList<>(List.of(
             new Card("Двойка Пики", 2), new Card("Тройка Пики", 3),
             new Card("Четвёрка Пики", 4), new Card("Пятёрка Пики", 5),
             new Card("Шестёрка Пики", 6), new Card("Семёрка Пики", 7),
@@ -45,11 +43,11 @@ public class Pack {
     /**
      * Takes next pseudo-random card from {@link Pack#packCards}.
      *
-     * @return next pseudo-random card from {@link Pack#packCards}.
+     * @return next pseudo-random card from {@link Pack#packCards} or {@code null} if {@link Pack#packCards} is empty.
      */
     public Card getCard() {
         if (packCards.isEmpty()) {
-            exit("Pack is empty!");
+            return null;
         }
         int index = generator.nextInt(packCards.size());
         Card currentCard = packCards.get(index);

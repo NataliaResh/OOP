@@ -138,9 +138,4 @@ public class GameIO {
         }
         System.out.println(output + card.toString());
     }
-
-    public static void exit(String error) {
-        System.out.println(error);
-        System.exit(1);
-    }
 }

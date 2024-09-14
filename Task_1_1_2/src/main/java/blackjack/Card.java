@@ -6,7 +6,7 @@ import static blackjack.Player.WIN_SCORE;
  * Class for managing card.
  */
 public class Card {
-    public static final int ACE_WEIGHT = 11;
+    private static final int ACE_WEIGHT = 11;
     private final String name;
     private int weight;
     private boolean closed;
