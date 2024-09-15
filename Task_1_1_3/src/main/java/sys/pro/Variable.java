@@ -1,5 +1,6 @@
 package sys.pro;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Variable extends Expression {
@@ -23,8 +24,11 @@ public class Variable extends Expression {
     }
 
     @Override
-    public int eval(String vars) {
-        return 0;
+    protected int evalImpl(HashMap<String, Integer> vars) {
+        if (!vars.containsKey(var)) {
+            Utils.exit("Not all variables have value!");
+        }
+        return vars.get(var);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package sys.pro;
 
+import java.util.HashMap;
+
 public class Sub extends Binary {
     public Sub(Expression right, Expression left) {
         super(right, left);
@@ -16,8 +18,8 @@ public class Sub extends Binary {
     }
 
     @Override
-    public int eval(String vars) {
-        return 0;
+    protected int evalImpl(HashMap<String, Integer> vars) {
+        return right.evalImpl(vars) - left.evalImpl(vars);
     }
 
     @Override

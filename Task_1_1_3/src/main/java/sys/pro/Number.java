@@ -1,5 +1,7 @@
 package sys.pro;
 
+import java.util.HashMap;
+
 public class Number extends Expression {
     protected int val;
 
@@ -18,8 +20,8 @@ public class Number extends Expression {
     }
 
     @Override
-    public int eval(String vars) {
-        return 0;
+    protected int evalImpl(HashMap<String, Integer> vars) {
+        return val;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package sys.pro;
 
+import java.util.HashMap;
+
 public class Div extends Binary {
     public Div(Expression right, Expression left) {
         super(right, left);
@@ -18,8 +20,12 @@ public class Div extends Binary {
     }
 
     @Override
-    public int eval(String vars) {
-        return 0;
+    protected int evalImpl(HashMap<String, Integer> vars) {
+        int leftValue = left.evalImpl(vars);
+        if (leftValue == 0) {
+            Utils.exit("Division by zero!");
+        }
+        return right.evalImpl(vars) / leftValue;
     }
 
     @Override
