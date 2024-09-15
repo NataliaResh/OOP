@@ -49,7 +49,8 @@ public abstract class Expression {
     public abstract Expression copy();
 
     /**
-     * Returns HashMap of variables with theirs values from string with designation of variables via {@code ;}.
+     * Returns HashMap of variables with theirs values from string
+     * with designation of variables via {@code ;}.
      *
      * @param vars string with designation of variables via {@code ;}.
      * @return HashMap of variables with theirs values

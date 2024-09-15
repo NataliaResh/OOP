@@ -10,7 +10,7 @@ public class Mul extends Binary {
      * Construct new Mul expression.
      *
      * @param right right expression in sum;
-     * @param left left expression in sum.
+     * @param left  left expression in sum.
      */
     public Mul(Expression right, Expression left) {
         super(right, left);
@@ -18,7 +18,8 @@ public class Mul extends Binary {
 
     @Override
     public Add derivative(String var) {
-        return new Add(new Mul(right.derivative(var), left.copy()), new Mul(right.copy(), left.derivative(var)));
+        return new Add(new Mul(right.derivative(var), left.copy()),
+                new Mul(right.copy(), left.derivative(var)));
     }
 
     @Override

@@ -6,12 +6,12 @@ import java.util.Stack;
  * Class for managing Parser.
  */
 public class Parser {
-    private final static char LEFT_BRACKET = '(';
-    private final static char RIGHT_BRACKET = ')';
-    private final static char PLUS = '+';
-    private final static char MINUS = '-';
-    private final static char MULTIPLICATION = '*';
-    private final static char DIVISION = '/';
+    private static final char LEFT_BRACKET = '(';
+    private static final char RIGHT_BRACKET = ')';
+    private static final char PLUS = '+';
+    private static final char MINUS = '-';
+    private static final char MULTIPLICATION = '*';
+    private static final char DIVISION = '/';
 
     /**
      * Checks if string is decimal.
@@ -37,7 +37,8 @@ public class Parser {
      * @return parsed expression.
      * @throws IncorrectExpressionException if string with expression is incorrect.
      */
-    private static Expression subExpression(char[] str, int start, int end) throws IncorrectExpressionException {
+    private static Expression subExpression(char[] str, int start, int end)
+            throws IncorrectExpressionException {
         return parse(String.valueOf(str).substring(start, end));
     }
 
@@ -71,7 +72,8 @@ public class Parser {
                     break;
                 case RIGHT_BRACKET:
                     if (stack.empty()) {
-                        throw new IncorrectExpressionException("There not left bracket before right one!");
+                        throw new IncorrectExpressionException("There not left bracket" +
+                                "before right one!");
                     }
                     stack.pop();
                     break;
