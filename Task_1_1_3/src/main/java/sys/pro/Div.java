@@ -2,7 +2,16 @@ package sys.pro;
 
 import java.util.HashMap;
 
+/**
+ * Class for managing Div.
+ */
 public class Div extends Binary {
+    /**
+     * Construct new Div expression.
+     *
+     * @param right right expression in sum;
+     * @param left left expression in sum.
+     */
     public Div(Expression right, Expression left) {
         super(right, left);
     }

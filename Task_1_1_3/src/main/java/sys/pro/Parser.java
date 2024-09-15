@@ -1,8 +1,10 @@
 package sys.pro;
 
-import java.util.Arrays;
 import java.util.Stack;
 
+/**
+ * Class for managing Parser.
+ */
 public class Parser {
     private final static char LEFT_BRACKET = '(';
     private final static char RIGHT_BRACKET = ')';
@@ -11,6 +13,12 @@ public class Parser {
     private final static char MULTIPLICATION = '*';
     private final static char DIVISION = '/';
 
+    /**
+     * Checks if string is decimal.
+     *
+     * @param str string for checking.
+     * @return true if all characters in string is decimal.
+     */
     private static boolean isDecimal(char[] str) {
         for (char ch : str) {
             if (ch < '0' || ch > '9') {
@@ -20,10 +28,26 @@ public class Parser {
         return true;
     }
 
+    /**
+     * Return parsed subexpression.
+     *
+     * @param str   string for parsing;
+     * @param start start index;
+     * @param end   end index;
+     * @return parsed expression.
+     * @throws IncorrectExpressionException if string with expression is incorrect.
+     */
     private static Expression subExpression(char[] str, int start, int end) throws IncorrectExpressionException {
         return parse(String.valueOf(str).substring(start, end));
     }
 
+    /**
+     * Parses string with expression.
+     *
+     * @param str string for parsing;
+     * @return parsed expression.
+     * @throws IncorrectExpressionException if string with expression is incorrect.
+     */
     public static Expression parse(String str) throws IncorrectExpressionException {
         char[] chars = str.toCharArray();
         if (chars.length == 0) {

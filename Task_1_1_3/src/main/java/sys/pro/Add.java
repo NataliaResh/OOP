@@ -2,7 +2,16 @@ package sys.pro;
 
 import java.util.HashMap;
 
+/**
+ * Class for managing Add.
+ */
 public class Add extends Binary {
+    /**
+     * Construct new Add expression.
+     *
+     * @param right right expression in sum;
+     * @param left left expression in sum.
+     */
     public Add(Expression right, Expression left) {
         super(right, left);
     }

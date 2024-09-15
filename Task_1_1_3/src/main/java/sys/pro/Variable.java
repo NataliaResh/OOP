@@ -3,9 +3,17 @@ package sys.pro;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Class for managing Variable.
+ */
 public class Variable extends Expression {
     protected String var;
 
+    /**
+     * Construct new Variable.
+     *
+     * @param var name of variable.
+     */
     public Variable(String var) {
         this.var = var;
     }

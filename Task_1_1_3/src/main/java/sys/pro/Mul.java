@@ -2,7 +2,16 @@ package sys.pro;
 
 import java.util.HashMap;
 
+/**
+ * Class for managing Mul.
+ */
 public class Mul extends Binary {
+    /**
+     * Construct new Mul expression.
+     *
+     * @param right right expression in sum;
+     * @param left left expression in sum.
+     */
     public Mul(Expression right, Expression left) {
         super(right, left);
     }

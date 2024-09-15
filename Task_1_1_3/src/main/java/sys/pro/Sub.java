@@ -2,7 +2,16 @@ package sys.pro;
 
 import java.util.HashMap;
 
+/**
+ * Class for managing Sub.
+ */
 public class Sub extends Binary {
+    /**
+     * Construct new Sub expression.
+     *
+     * @param right right expression in sum;
+     * @param left left expression in sum.
+     */
     public Sub(Expression right, Expression left) {
         super(right, left);
     }
