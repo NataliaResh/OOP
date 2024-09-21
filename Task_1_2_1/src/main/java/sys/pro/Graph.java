@@ -1,21 +1,21 @@
 package sys.pro;
 
-import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public interface Graph {
-    void addNode(int node);
+    void addNode(Integer node);
 
-    void removeNode(T node);
+    void removeNode(Integer node);
 
-    void addEdge(T from, T to);
+    void addEdge(Integer from, Integer to);
 
-    void removeEdge(T from, T to);
+    void removeEdge(Integer from, Integer to);
 
-    ArrayList<T> getNeighbours(T node);
+    Integer[] getNeighbours(Integer node);
+
+    boolean isConsistNode(Integer node);
 
     /**
      * Builds graph from file;
@@ -35,8 +35,8 @@ public interface Graph {
                     Utils.exit("Incorrect format of file!");
                 }
                 try {
-                    Class<T> from = (Class<T>)result[0];
-                    T to = (Class<T>)result[1];
+                    int from = Integer.parseInt(result[0]);
+                    int to = Integer.parseInt(result[1]);
                     addNode(from);
                     addNode(to);
                     addEdge(from, to);

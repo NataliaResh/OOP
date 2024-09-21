@@ -1,7 +1,6 @@
 package sys.pro;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MatrixGraph implements Graph {
     static final int MAX_NODES_COUNT = 1024;
@@ -9,10 +8,18 @@ public class MatrixGraph implements Graph {
     private boolean[][] graph = new boolean[size][size];
     private boolean[] consistedNodes = new boolean[size];
 
-    //private final HashMap<T, Integer> nodeToInt = new HashMap<>();
-    //private final ArrayList<T> intToNode = new ArrayList<>(size);
+    public MatrixGraph() {
+    }
+
+    public MatrixGraph(String fileName) {
+        buildFromFile(fileName);
+    }
+
     @Override
-    public void addNode(int node) {
+    public void addNode(Integer node) {
+        if (node >= MAX_NODES_COUNT) {
+            Utils.exit("Can't add node with number more then " + MAX_NODES_COUNT);
+        }
         if (node >= size) {
             size *= 2;
             resizeGraph();
@@ -35,47 +42,50 @@ public class MatrixGraph implements Graph {
     }
 
     @Override
-    public void removeNode(int node) {
-        
-        if (nodeToInt.containsKey(node)) {
-            for (int i = nodeToInt.get(node) + 1; i < n; i++) {
-                T currentNode = intToNode.get(i);
-                intToNode.set(i - 1, currentNode);
-                nodeToInt.put(currentNode, i - 1);
-            }
-            intToNode.remove(n - 1);
-            nodeToInt.remove(node);
-        }
+    public boolean isConsistNode(Integer node) {
+        return node >= 0 && node < size && consistedNodes[node];
     }
 
-    private void setEdge(T from, T to, boolean value) {
-        if (!(nodeToInt.containsKey(from) && nodeToInt.containsKey(to))) {
+    private void checkNode(Integer node) {
+        if (!isConsistNode(node)) {
             Utils.exit("Node is not in graph!");
         }
-        int fromInt = nodeToInt.get(from);
-        int toInt = nodeToInt.get(to);
-        graph[fromInt][toInt] = value;
     }
 
     @Override
-    public void addEdge(T from, T to) {
+    public void removeNode(Integer node) {
+        checkNode(node);
+        consistedNodes[node] = false;
+        for (int i = 0; i < size; i++) {
+            graph[i][node] = false;
+            graph[node][i] = false;
+        }
+    }
+
+    private void setEdge(Integer from, Integer to, boolean value) {
+        checkNode(from);
+        checkNode(to);
+        graph[from][to] = value;
+    }
+
+    @Override
+    public void addEdge(Integer from, Integer to) {
         setEdge(from, to, true);
     }
 
     @Override
-    public void removeEdge(T from, T to) {
+    public void removeEdge(Integer from, Integer to) {
         setEdge(from, to, false);
     }
 
     @Override
-    public ArrayList<T> getNeighbours(T node) {
-        int nodeInt = nodeToInt.get(node);
-        ArrayList<T> neighbours = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            if (graph[nodeInt][i] && i != nodeInt) {
-                neighbours.add(intToNode.get(i));
+    public Integer[] getNeighbours(Integer node) {
+        ArrayList<Integer> neighbours = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            if (graph[node][i]) {
+                neighbours.add(i);
             }
         }
-        return neighbours;
+        return neighbours.toArray(new Integer[0]);
     }
 }
