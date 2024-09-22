@@ -2,16 +2,25 @@ package sys.pro;
 
 import java.util.ArrayList;
 
-public class MatrixGraph implements Graph {
+/**
+ * Class for managing graph with adjacency matrix.
+ */
+public class AdjacencyMatrixGraph implements Graph {
     static final int MAX_NODES_COUNT = 1024;
     private int size = 16;
     private boolean[][] graph = new boolean[size][size];
     private boolean[] consistedNodes = new boolean[size];
 
-    public MatrixGraph() {
+    /**
+     * Constructor of graph with adjacency matrix.
+     */
+    public AdjacencyMatrixGraph() {
     }
 
-    public MatrixGraph(String fileName) {
+    /**
+     * Constructor of graph with adjacency matrix from file.
+     */
+    public AdjacencyMatrixGraph(String fileName) {
         buildFromFile(fileName);
     }
 

@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Class for managing graph with adjacency list.
+ */
 public class ListGraph implements Graph {
     private HashMap<Integer, ArrayList<Integer>> graph = new HashMap<>();
 
+    /**
+     * Constructor of graph with adjacency list.
+     */
     public ListGraph() {
     }
 
+    /**
+     * Constructor of graph with adjacency list from file.
+     */
     public ListGraph(String fileName) {
         buildFromFile(fileName);
     }
