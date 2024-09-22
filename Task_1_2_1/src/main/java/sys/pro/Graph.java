@@ -3,11 +3,19 @@ package sys.pro;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Interface for graphs.
  */
 public interface Graph {
+    /**
+     * Returns max count of nodes.
+     *
+     * @return max count of nodes.
+     */
+    int getNodesCapacity();
+
     /**
      * Adds new node to the graph.
      *
@@ -74,8 +82,6 @@ public interface Graph {
                 try {
                     int from = Integer.parseInt(result[0]);
                     int to = Integer.parseInt(result[1]);
-                    addNode(from);
-                    addNode(to);
                     addEdge(from, to);
                 } catch (Exception e) {
                     Utils.exit("Incorrect type of node!");
@@ -85,6 +91,22 @@ public interface Graph {
         } catch (IOException e) {
             Utils.exit("Incorrect file " + fileName);
         }
+    }
 
+    default boolean isEqual(Graph graph) {
+        if (getNodesCapacity() != graph.getNodesCapacity()) {
+            return false;
+        }
+        for (int i = 0; i < getNodesCapacity(); i++) {
+            if (isConsistNode(i) != graph.isConsistNode(i)) {
+                return false;
+            }
+            if (isConsistNode(i) && graph.isConsistNode(i)) {
+                if (!(Arrays.equals(getNeighbours(i), graph.getNeighbours(i)))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

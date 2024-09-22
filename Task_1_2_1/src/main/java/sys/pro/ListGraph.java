@@ -8,6 +8,7 @@ import java.util.HashMap;
  * Class for managing graph with adjacency list.
  */
 public class ListGraph implements Graph {
+    private int nodesCapacity = 16;
     private HashMap<Integer, ArrayList<Integer>> graph = new HashMap<>();
 
     /**
@@ -23,12 +24,16 @@ public class ListGraph implements Graph {
         buildFromFile(fileName);
     }
 
+    public int getNodesCapacity() {
+        return nodesCapacity;
+    }
+
     @Override
     public void addNode(Integer node) {
-        if (graph.containsKey(node)) {
-            Utils.exit("There is node in graph already!");
+        if (!graph.containsKey(node)) {
+            graph.put(node, new ArrayList<>());
+            nodesCapacity = Math.max(nodesCapacity, node + 1);
         }
-        graph.put(node, new ArrayList<>());
     }
 
     @Override
@@ -53,8 +58,12 @@ public class ListGraph implements Graph {
 
     @Override
     public void addEdge(Integer from, Integer to) {
-        checkNode(from);
-        checkNode(to);
+        if (!isConsistNode(from)) {
+            addNode(from);
+        }
+        if (!isConsistNode(to)) {
+            addNode(to);
+        }
         graph.get(from).add(to);
     }
 

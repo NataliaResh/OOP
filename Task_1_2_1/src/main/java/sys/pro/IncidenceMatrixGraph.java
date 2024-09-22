@@ -26,6 +26,10 @@ public class IncidenceMatrixGraph implements Graph {
         buildFromFile(fileName);
     }
 
+    public int getNodesCapacity() {
+        return nodesCapacity;
+    }
+
     @Override
     public void addNode(Integer node) {
         if (node >= MAX_NODES_COUNT) {
@@ -89,8 +93,12 @@ public class IncidenceMatrixGraph implements Graph {
 
     @Override
     public void addEdge(Integer from, Integer to) {
-        checkNode(from);
-        checkNode(to);
+        if (!isConsistNode(from)) {
+            addNode(from);
+        }
+        if (!isConsistNode(to)) {
+            addNode(to);
+        }
         if (edgesCount >= edgesCapacity) {
             edgesCapacity *= 2;
             resizeGraphEdges();
