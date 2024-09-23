@@ -3,18 +3,19 @@ package sys.pro;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
-import java.util.Arrays;
-
+/**
+ * Class for testing AdjacencyMatrixGraph.
+ */
 public class AdjacencyMatrixGraphTest {
     @Test
-    public void BuildFromFileTest() {
+    public void buildFromFileTest() {
         AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
         Integer[] result = {2, 6};
         Assert.assertEquals(matrix.getNeighbours(3), result);
     }
 
     @Test
-    public void TopSortTest() {
+    public void topSortTest() {
         AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
         Integer[] topSortMatrix = TopologicalSort.topSort(matrix);
         Integer[] ans = {5, 4, 3, 6, 2, 1};
