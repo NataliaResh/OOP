@@ -3,6 +3,8 @@ package sys.pro;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
+import java.util.Arrays;
+
 public class AdjacencyMatrixGraphTest {
     @Test
     public void BuildFromFileTest() {
@@ -14,8 +16,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void TopSortTest() {
         AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
-        AdjacencyMatrixGraph topSortMatrix = TopologicalSort.topSort(matrix);
-        AdjacencyMatrixGraph sortedMatrix = new AdjacencyMatrixGraph("build/resources/test/tests/sorted.in");
-        Assert.assertTrue(topSortMatrix.isEqual(sortedMatrix));
+        Integer[] topSortMatrix = TopologicalSort.topSort(matrix);
+        Integer[] ans = {5, 4, 3, 6, 2, 1};
+        Assert.assertEquals(topSortMatrix, ans);
     }
 }

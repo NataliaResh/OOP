@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class TopologicalSort {
-    private static void dfs(int node, AdjacencyMatrixGraph graph, boolean[] visited, Stack<Integer> stack) {
+    private static void dfs(int node, Graph graph, boolean[] visited, Stack<Integer> stack) {
         visited[node] = true;
         for (int neighbour: graph.getNeighbours(node)) {
             if (!visited[neighbour]) {
@@ -14,7 +14,7 @@ public class TopologicalSort {
         stack.push(node);
     }
 
-    public static AdjacencyMatrixGraph topSort(AdjacencyMatrixGraph graph) {
+    public static Integer[] topSort(Graph graph) {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[graph.getNodesCapacity()];
         for (int i = 0; i < graph.getNodesCapacity(); i++) {
@@ -22,16 +22,11 @@ public class TopologicalSort {
                 dfs(i, graph, visited, stack);
             }
         }
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < stack.size(); i++) {
-            map.put(stack.get(i), i);
+        int n = stack.size();
+        Integer[] ans = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            ans[i] = stack.pop();
         }
-        AdjacencyMatrixGraph newGraph = new AdjacencyMatrixGraph();
-        for (int node: stack) {
-            for (int neighbour: graph.getNeighbours(node)) {
-                newGraph.addEdge(map.get(node), map.get(neighbour));
-            }
-        }
-        return newGraph;
+        return ans;
     }
 }
