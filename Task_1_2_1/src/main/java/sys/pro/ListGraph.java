@@ -80,4 +80,14 @@ public class ListGraph implements Graph {
         Integer[] neighbours = graph.get(node).toArray(new Integer[0]);
         return Arrays.copyOf(neighbours, neighbours.length);
     }
+
+    /**
+     * Returns graph as string.
+     *
+     * @return string of graph.
+     */
+    @Override
+    public String toString() {
+        return Graph.toStringImpl(this);
+    }
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Interface for graphs.
@@ -93,6 +94,12 @@ public interface Graph {
         }
     }
 
+    /**
+     * Returns true if graphs are equal.
+     *
+     * @param graph the other graph.
+     * @return true if graphs are equal.
+     */
     default boolean isEqual(Graph graph) {
         if (getNodesCapacity() != graph.getNodesCapacity()) {
             return false;
@@ -108,5 +115,23 @@ public interface Graph {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns graph as string.
+     *
+     * @param graph current graph.
+     * @return string of graph.
+     */
+    static String toStringImpl(Graph graph) {
+        StringBuilder ans = new StringBuilder();
+        for (int i = 0; i < graph.getNodesCapacity(); i++) {
+            if (graph.isConsistNode(i)) {
+                ans.append(i).append(": ");
+                String neighbours = Arrays.toString(graph.getNeighbours(i));
+                ans.append(neighbours, 1, neighbours.length() - 1).append("\n");
+            }
+        }
+        return ans.toString();
     }
 }

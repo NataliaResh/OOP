@@ -103,4 +103,14 @@ public class AdjacencyMatrixGraph implements Graph {
         }
         return neighbours.toArray(new Integer[0]);
     }
+
+    /**
+     * Returns graph as string.
+     *
+     * @return string of graph.
+     */
+    @Override
+    public String toString() {
+        return Graph.toStringImpl(this);
+    }
 }

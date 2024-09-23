@@ -21,4 +21,12 @@ public class IncidenceMatrixGraphTest {
         Integer[] ans = {5, 4, 3, 6, 2, 1};
         Assert.assertEquals(topSortMatrix, ans);
     }
+
+    @Test
+    public void toStringTest() {
+        IncidenceMatrixGraph matrix = new IncidenceMatrixGraph("build/resources/test/tests/1.in");
+        String result = matrix.toString();
+        String ans = "1: \n2: 1\n3: 2, 6\n4: 1\n5: 4\n6: \n";
+        Assert.assertEquals(result, ans);
+    }
 }
