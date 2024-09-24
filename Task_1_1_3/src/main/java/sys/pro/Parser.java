@@ -42,6 +42,22 @@ public class Parser {
         return parse(String.valueOf(str).substring(start, end));
     }
 
+    private static int getPriority(char ch) {
+        if (ch == PLUS || ch == MINUS) {
+            return 0;
+        }
+        if (ch == MULTIPLICATION || ch == DIVISION) {
+            return 1;
+        }
+        return 2;
+    }
+
+    private static char[] getSubstring(char[] chars, int start, int end) {
+        char[] ans = new char[end - start + 1];
+        if (end - start >= 0) System.arraycopy(chars, start, ans, 0, end - start);
+        return ans;
+    }
+
     /**
      * Parses string with expression.
      *
@@ -50,22 +66,16 @@ public class Parser {
      * @throws IncorrectExpressionException if string with expression is incorrect.
      */
     public static Expression parse(String str) throws IncorrectExpressionException {
-        char[] chars = str.toCharArray();
-        if (chars.length == 0) {
+        if (str.isEmpty()) {
             return null;
         }
-        if (chars[0] != LEFT_BRACKET) {
-            if (isDecimal(chars)) {
-                return new Number(Integer.parseInt(String.valueOf(chars)));
-            } else {
-                return new Variable(String.valueOf(chars));
-            }
-        }
-        if (chars[chars.length - 1] != RIGHT_BRACKET) {
-            throw new IncorrectExpressionException("There not right bracket at the end!");
+        char[] chars = str.toCharArray();
+        if (chars[0] == LEFT_BRACKET && chars[chars.length - 1] == RIGHT_BRACKET) {
+            chars = getSubstring(chars, 1, chars.length - 1);
         }
         Stack<Integer> stack = new Stack<>();
-        for (int i = 1; i < chars.length - 1; i++) {
+        int[] priorityIndex = {-1, -1};
+        for (int i = 0; i < chars.length; i++) {
             switch (chars[i]) {
                 case LEFT_BRACKET:
                     stack.push(i);
@@ -79,32 +89,53 @@ public class Parser {
                     break;
                 case PLUS:
                     if (stack.empty()) {
-                        return new Add(subExpression(chars, 1, i),
+                        return new Add(subExpression(chars, 0, i),
                                 subExpression(chars, i + 1, chars.length - 1));
                     }
                     break;
                 case MINUS:
                     if (stack.empty()) {
-                        return new Sub(subExpression(chars, 1, i),
+                        return new Sub(subExpression(chars, 0, i),
                                 subExpression(chars, i + 1, chars.length - 1));
                     }
                     break;
                 case MULTIPLICATION:
                     if (stack.empty()) {
-                        return new Mul(subExpression(chars, 1, i),
-                                subExpression(chars, i + 1, chars.length - 1));
+                        int priority = getPriority(MULTIPLICATION);
+                        if (priorityIndex[priority] == -1) {
+                            priorityIndex[priority] = i;
+                        }
                     }
                     break;
                 case DIVISION:
                     if (stack.empty()) {
-                        return new Div(subExpression(chars, 1, i),
-                                subExpression(chars, i + 1, chars.length - 1));
+                        int priority = getPriority(DIVISION);
+                        if (priorityIndex[priority] == -1) {
+                            priorityIndex[priority] = i;
+                        }
                     }
                     break;
                 default:
                     break;
             }
         }
-        throw new IncorrectExpressionException("There is no correct operation!");
+        if (!stack.empty()) {
+            throw new IncorrectExpressionException("There not right bracket!");
+        }
+        int index = priorityIndex[getPriority(MULTIPLICATION)];
+        if (index != -1) {
+            if (chars[index] == MULTIPLICATION) {
+                return new Mul(subExpression(chars, 0, index),
+                        subExpression(chars, index + 1, chars.length - 1));
+            } else if (chars[index] == DIVISION) {
+                return new Div(subExpression(chars, 0, index),
+                        subExpression(chars, index + 1, chars.length - 1));
+            }
+        }
+        if (isDecimal(chars)) {
+            return new Number(Integer.parseInt(String.valueOf(chars)));
+        } else {
+            return new Variable(String.valueOf(chars));
+        }
     }
 }
