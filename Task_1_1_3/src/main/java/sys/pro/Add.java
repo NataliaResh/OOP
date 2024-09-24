@@ -38,6 +38,7 @@ public class Add extends Binary {
         return new Add(newRight, newLeft);
     }
 
+    @Override
     public Expression simplify() {
         try {
             return new Number(eval(""));

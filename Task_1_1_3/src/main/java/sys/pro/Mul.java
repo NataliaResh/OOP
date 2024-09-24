@@ -39,6 +39,7 @@ public class Mul extends Binary {
         return new Mul(newRight, newLeft);
     }
 
+    @Override
     public Expression simplify() {
         try {
             return new Number(eval(""));

@@ -28,7 +28,8 @@ public abstract class Expression {
      * @param vars HashMap of variables with theirs values.
      * @return result of expression.
      */
-    protected abstract int evalImpl(HashMap<String, Integer> vars) throws NotEnoughSignificationsExpression;
+    protected abstract int evalImpl(HashMap<String, Integer> vars)
+            throws NotEnoughSignificationsExpression;
 
     /**
      * Returns result of expression.

@@ -39,6 +39,7 @@ public class Sub extends Binary {
         return new Sub(newRight, newLeft);
     }
 
+    @Override
     public Expression simplify() {
         try {
             return new Number(eval(""));

@@ -44,6 +44,7 @@ public class Div extends Binary {
         return new Div(newRight, newLeft);
     }
 
+    @Override
     public Expression simplify() {
         try {
             return new Number(eval(""));
