@@ -13,4 +13,11 @@ public class Utils {
         System.err.println(message);
         System.exit(1);
     }
+
+    /**
+     * Pass instruction.
+     */
+    public static void pass() {
+        return;
+    }
 }

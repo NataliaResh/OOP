@@ -54,7 +54,9 @@ public class Parser {
 
     private static char[] getSubstring(char[] chars, int start, int end) {
         char[] ans = new char[end - start + 1];
-        if (end - start >= 0) System.arraycopy(chars, start, ans, 0, end - start);
+        if (end - start >= 0) {
+            System.arraycopy(chars, start, ans, 0, end - start);
+        }
         return ans;
     }
 
@@ -82,8 +84,8 @@ public class Parser {
                     break;
                 case RIGHT_BRACKET:
                     if (stack.empty()) {
-                        throw new IncorrectExpressionException("There not left bracket" +
-                                "before right one!");
+                        throw new IncorrectExpressionException("There not left bracket"
+                                + "before right one!");
                     }
                     stack.pop();
                     break;

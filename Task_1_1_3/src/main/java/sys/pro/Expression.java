@@ -71,5 +71,10 @@ public abstract class Expression {
         return dict;
     }
 
+    /**
+     * Simplifies the expression and returns simplified one.
+     *
+     * @return simplified expression.
+     */
     public abstract Expression simplify();
 }

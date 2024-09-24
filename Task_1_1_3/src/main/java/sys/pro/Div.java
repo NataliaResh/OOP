@@ -47,7 +47,9 @@ public class Div extends Binary {
     public Expression simplify() {
         try {
             return new Number(eval(""));
-        } catch (NotEnoughSignificationsExpression ignored) {}
+        } catch (NotEnoughSignificationsExpression ignored) {
+            Utils.pass();
+        }
         Expression newRight = right.simplify();
         Expression newLeft = left.simplify();
         try {
@@ -55,13 +57,17 @@ public class Div extends Binary {
             if (rightResult == 0) {
                 return new Number(0);
             }
-        } catch (NotEnoughSignificationsExpression ignored) {}
+        } catch (NotEnoughSignificationsExpression ignored) {
+            Utils.pass();
+        }
         try {
             int leftResult = newRight.eval("");
             if (leftResult == 1) {
                 return newRight;
             }
-        } catch (NotEnoughSignificationsExpression ignored) {}
+        } catch (NotEnoughSignificationsExpression ignored) {
+            Utils.pass();
+        }
         return new Div(newRight, newLeft);
     }
 }
