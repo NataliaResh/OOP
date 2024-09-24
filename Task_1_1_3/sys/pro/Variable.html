@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -226,6 +226,11 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="Expression.html" title="class in sys.pro">Expression</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplify()">simplify</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -348,7 +353,8 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>evalImpl</h4>
-<pre class="methodSignature">protected&nbsp;int&nbsp;evalImpl&#8203;(java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&nbsp;vars)</pre>
+<pre class="methodSignature">protected&nbsp;int&nbsp;evalImpl&#8203;(java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&nbsp;vars)
+                throws <a href="NotEnoughSignificationsExpression.html" title="class in sys.pro">NotEnoughSignificationsExpression</a></pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Expression.html#evalImpl(java.util.HashMap)">Expression</a></code></span></div>
 <div class="block">Implements of <a href="Expression.html#eval(java.lang.String)"><code>Expression.eval(java.lang.String)</code></a> method.</div>
 <dl>
@@ -358,13 +364,15 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 <dd><code>vars</code> - HashMap of variables with theirs values.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>result of expression.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="NotEnoughSignificationsExpression.html" title="class in sys.pro">NotEnoughSignificationsExpression</a></code></dd>
 </dl>
 </li>
 </ul>
 <a id="copy()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
 <pre class="methodSignature">public&nbsp;<a href="Variable.html" title="class in sys.pro">Variable</a>&nbsp;copy()</pre>
@@ -375,6 +383,19 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 <dd><code><a href="Expression.html#copy()">copy</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in sys.pro">Expression</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>deep copy of expression.</dd>
+</dl>
+</li>
+</ul>
+<a id="simplify()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>simplify</h4>
+<pre class="methodSignature">public&nbsp;<a href="Expression.html" title="class in sys.pro">Expression</a>&nbsp;simplify()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in sys.pro">Expression</a></code></dd>
 </dl>
 </li>
 </ul>
