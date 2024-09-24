@@ -33,7 +33,7 @@ public class Variable extends Expression {
 
     @Override
     protected int evalImpl(HashMap<String, Integer> vars) throws NotEnoughSignificationsExpression {
-        if (!vars.containsKey(var)) {
+        if (vars == null || !vars.containsKey(var)) {
             throw new NotEnoughSignificationsExpression("Not all variables have value!");
         }
         return vars.get(var);

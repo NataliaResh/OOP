@@ -98,4 +98,40 @@ public class ExpressionTest {
         }
         Assert.assertEquals(result, 42);
     }
+
+    @Test
+    public void simplifyNumberTest() {
+        Expression e = new Number(42);
+        Expression simplified = e.simplify();
+        Assert.assertEquals(simplified.toString(), "42");
+    }
+
+    @Test
+    public void simplifyVariableTest() {
+        Expression e = new Variable("y_x");
+        Expression simplified = e.simplify();
+        Assert.assertEquals(simplified.toString(), "y_x");
+    }
+
+    @Test
+    public void simplifyDivisionTest() {
+        Expression e = new Div(new Sub(new Number(1), new Number(1)), new Number(3));
+        Expression simplified = e.simplify();
+        Assert.assertEquals(simplified.toString(), "0");
+    }
+
+    @Test
+    public void simplifyMultiplicationTest() {
+        Expression e = new Mul(new Sub(new Number(2), new Number(1)), new Number(3));
+        Expression simplified = e.simplify();
+        Assert.assertEquals(simplified.toString(), "3");
+    }
+
+    @Test
+    public void simplifySubTest() {
+        Expression e = new Sub(new Sub(new Add(new Number(1), new Number(1)), new Variable("x")),
+                new Sub(new Number(2), new Variable("x")));
+        Expression simplified = e.simplify();
+        Assert.assertEquals(simplified.toString(), "0");
+    }
 }
