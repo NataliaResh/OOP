@@ -32,15 +32,20 @@ public class Variable extends Expression {
     }
 
     @Override
-    protected int evalImpl(HashMap<String, Integer> vars) {
+    protected int evalImpl(HashMap<String, Integer> vars) throws NotEnoughSignificationsExpression {
         if (!vars.containsKey(var)) {
-            Utils.exit("Not all variables have value!");
+            throw new NotEnoughSignificationsExpression("Not all variables have value!");
         }
         return vars.get(var);
     }
 
     @Override
     public Variable copy() {
+        return new Variable(var);
+    }
+
+    @Override
+    public Expression simplify() {
         return new Variable(var);
     }
 }

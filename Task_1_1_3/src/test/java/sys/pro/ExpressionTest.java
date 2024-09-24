@@ -54,28 +54,48 @@ public class ExpressionTest {
     public void evalTest() {
         Expression e = new Add(new Number(3), new Mul(new Number(2),
                 new Variable("x")));
-        int result = e.eval("x = 10; y = 13");
+        int result = 0;
+        try {
+            result = e.eval("x = 10; y = 13");
+        } catch (NotEnoughSignificationsExpression ex) {
+            Assert.fail();
+        }
         Assert.assertEquals(result, 23);
     }
 
     @Test
     public void evalNumberTest1() {
         Expression e = new Number(42);
-        int result = e.eval("x = 10");
+        int result = 0;
+        try {
+            result = e.eval("x = 10");
+        } catch (NotEnoughSignificationsExpression ex) {
+            Assert.fail();
+        }
         Assert.assertEquals(result, 42);
     }
 
     @Test
     public void evalNumberTest2() {
         Expression e = new Number(42);
-        int result = e.eval("");
+        int result = 0;
+        try {
+            result = e.eval("");
+        } catch (NotEnoughSignificationsExpression ex) {
+            Assert.fail();
+        }
         Assert.assertEquals(result, 42);
     }
 
     @Test
     public void evalVariableTest() {
         Expression e = new Variable("var");
-        int result = e.eval("var = 42");
+        int result = 0;
+        try {
+            result = e.eval("var = 42");
+        } catch (NotEnoughSignificationsExpression ex) {
+            Assert.fail();
+        }
         Assert.assertEquals(result, 42);
     }
 }

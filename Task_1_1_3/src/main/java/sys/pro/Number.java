@@ -36,4 +36,9 @@ public class Number extends Expression {
     public Number copy() {
         return new Number(val);
     }
+
+    @Override
+    public Expression simplify() {
+        return new Number(val);
+    }
 }

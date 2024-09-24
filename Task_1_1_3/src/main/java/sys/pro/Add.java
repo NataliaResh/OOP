@@ -27,7 +27,7 @@ public class Add extends Binary {
     }
 
     @Override
-    protected int evalImpl(HashMap<String, Integer> vars) {
+    protected int evalImpl(HashMap<String, Integer> vars) throws NotEnoughSignificationsExpression {
         return right.evalImpl(vars) + left.evalImpl(vars);
     }
 
@@ -35,6 +35,27 @@ public class Add extends Binary {
     public Add copy() {
         Expression newRight = right.copy();
         Expression newLeft = left.copy();
+        return new Add(newRight, newLeft);
+    }
+
+    public Expression simplify() {
+        try {
+            return new Number(eval(""));
+        } catch (NotEnoughSignificationsExpression ignored) {}
+        Expression newRight = right.simplify();
+        Expression newLeft = left.simplify();
+        try {
+            int rightResult = newRight.eval("");
+            if (rightResult == 0) {
+                return newLeft;
+            }
+        } catch (NotEnoughSignificationsExpression ignored) {}
+        try {
+            int leftResult = newRight.eval("");
+            if (leftResult == 0) {
+                return newRight;
+            }
+        } catch (NotEnoughSignificationsExpression ignored) {}
         return new Add(newRight, newLeft);
     }
 }

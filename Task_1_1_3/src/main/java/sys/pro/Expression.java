@@ -28,7 +28,7 @@ public abstract class Expression {
      * @param vars HashMap of variables with theirs values.
      * @return result of expression.
      */
-    protected abstract int evalImpl(HashMap<String, Integer> vars);
+    protected abstract int evalImpl(HashMap<String, Integer> vars) throws NotEnoughSignificationsExpression;
 
     /**
      * Returns result of expression.
@@ -36,7 +36,7 @@ public abstract class Expression {
      * @param vars designation of variables via {@code ;}.
      * @return result of expression.
      */
-    public int eval(String vars) {
+    public int eval(String vars) throws NotEnoughSignificationsExpression {
         HashMap<String, Integer> dictVars = getVariables(vars);
         return evalImpl(dictVars);
     }
@@ -70,4 +70,6 @@ public abstract class Expression {
         }
         return dict;
     }
+
+    public abstract Expression simplify();
 }
