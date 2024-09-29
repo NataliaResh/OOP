@@ -20,6 +20,7 @@ public class NumberTest {
         Assert.assertEquals(de.toString(), "0");
         Assert.assertEquals(e.toString(), "3");
     }
+
     @Test
     public void evalNumberTest1() {
         Expression e = new Number(42);

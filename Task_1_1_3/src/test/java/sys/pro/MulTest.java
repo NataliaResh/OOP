@@ -69,7 +69,8 @@ public class MulTest {
 
     @Test
     public void simplifyTest4() {
-        Expression e = new Mul(new Mul(new Number(1), new Number(1)), new Mul(new Number(3), new Variable("x")));
+        Expression e = new Mul(new Mul(new Number(1), new Number(1)),
+                new Mul(new Number(3), new Variable("x")));
         Expression simplified = e.simplify();
         Assert.assertEquals(simplified.toString(), "(3*x)");
     }

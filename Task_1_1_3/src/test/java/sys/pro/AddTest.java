@@ -47,14 +47,16 @@ public class AddTest {
 
     @Test
     public void simplifyTest1() {
-        Expression e = new Add(new Add(new Variable("x"), new Add(new Number(1), new Number(2))), new Number(0));
+        Expression e = new Add(new Add(new Variable("x"), new Add(new Number(1),
+                new Number(2))), new Number(0));
         Expression simplified = e.simplify();
         Assert.assertEquals(simplified.toString(), "(x+3)");
     }
 
     @Test
     public void simplifyTest2() {
-        Expression e = new Add(new Number(0), new Add(new Variable("x"), new Add(new Number(1), new Number(2))));
+        Expression e = new Add(new Number(0), new Add(new Variable("x"),
+                new Add(new Number(1), new Number(2))));
         Expression simplified = e.simplify();
         Assert.assertEquals(simplified.toString(), "(x+3)");
     }
