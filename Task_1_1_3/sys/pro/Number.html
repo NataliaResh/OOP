@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -226,13 +226,23 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasVariable()">hasVariable</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>protected int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#safeEval()">safeEval</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="Expression.html" title="class in sys.pro">Expression</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplify()">simplify</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Simplifies the expression and returns simplified one.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -276,7 +286,7 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>val</h4>
-<pre>protected&nbsp;int val</pre>
+<pre>protected final&nbsp;int val</pre>
 </li>
 </ul>
 </li>
@@ -388,7 +398,7 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 <a id="simplify()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>simplify</h4>
 <pre class="methodSignature">public&nbsp;<a href="Expression.html" title="class in sys.pro">Expression</a>&nbsp;simplify()</pre>
@@ -399,6 +409,32 @@ extends <a href="Expression.html" title="class in sys.pro">Expression</a></pre>
 <dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in sys.pro">Expression</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>simplified expression.</dd>
+</dl>
+</li>
+</ul>
+<a id="safeEval()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>safeEval</h4>
+<pre class="methodSignature">protected&nbsp;int&nbsp;safeEval()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Expression.html#safeEval()">safeEval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in sys.pro">Expression</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="hasVariable()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hasVariable</h4>
+<pre class="methodSignature">protected&nbsp;boolean&nbsp;hasVariable()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Expression.html#hasVariable()">hasVariable</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in sys.pro">Expression</a></code></dd>
 </dl>
 </li>
 </ul>

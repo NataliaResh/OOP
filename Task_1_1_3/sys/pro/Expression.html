@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":10,"i3":6,"i4":6,"i5":6};
+var data = {"i0":6,"i1":6,"i2":10,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -207,13 +207,23 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>protected abstract boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasVariable()">hasVariable</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>protected abstract int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#safeEval()">safeEval</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>abstract <a href="Expression.html" title="class in sys.pro">Expression</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplify()">simplify</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Simplifies the expression and returns simplified one.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>abstract java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -350,7 +360,7 @@ extends java.lang.Object</pre>
 <a id="simplify()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>simplify</h4>
 <pre class="methodSignature">public abstract&nbsp;<a href="Expression.html" title="class in sys.pro">Expression</a>&nbsp;simplify()</pre>
@@ -359,6 +369,24 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>simplified expression.</dd>
 </dl>
+</li>
+</ul>
+<a id="safeEval()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>safeEval</h4>
+<pre class="methodSignature">protected abstract&nbsp;int&nbsp;safeEval()</pre>
+</li>
+</ul>
+<a id="hasVariable()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hasVariable</h4>
+<pre class="methodSignature">protected abstract&nbsp;boolean&nbsp;hasVariable()</pre>
 </li>
 </ul>
 </li>
