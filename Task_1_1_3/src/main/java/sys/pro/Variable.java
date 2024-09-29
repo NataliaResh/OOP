@@ -7,7 +7,7 @@ import java.util.Objects;
  * Class for managing Variable.
  */
 public class Variable extends Expression {
-    protected String var;
+    protected final String var;
 
     /**
      * Construct new Variable.
@@ -34,7 +34,7 @@ public class Variable extends Expression {
     @Override
     protected int evalImpl(HashMap<String, Integer> vars) throws NotEnoughSignificationsExpression {
         if (vars == null || !vars.containsKey(var)) {
-            throw new NotEnoughSignificationsExpression("Not all variables have value!");
+            throw new NotEnoughSignificationsExpression("Variable " + var + " hasn't value!");
         }
         return vars.get(var);
     }
@@ -48,4 +48,17 @@ public class Variable extends Expression {
     public Expression simplify() {
         return new Variable(var);
     }
+
+    @Override
+    protected int safeEval() {
+        Utils.exit("Call safeEval with variable!");
+        return 0;
+    }
+
+    @Override
+    protected boolean hasVariable() {
+        return true;
+    }
+
+
 }

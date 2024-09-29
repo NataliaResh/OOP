@@ -78,4 +78,8 @@ public abstract class Expression {
      * @return simplified expression.
      */
     public abstract Expression simplify();
+
+    protected abstract int safeEval();
+
+    protected abstract boolean hasVariable();
 }

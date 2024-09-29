@@ -41,35 +41,34 @@ public class Mul extends Binary {
 
     @Override
     public Expression simplify() {
-        try {
-            return new Number(eval(""));
-        } catch (NotEnoughSignificationsExpression ignored) {
-            Utils.pass();
+        if (!hasVariable()) {
+            return new Number(safeEval());
         }
         Expression newRight = right.simplify();
         Expression newLeft = left.simplify();
-        try {
-            int rightResult = newRight.eval("");
+        if (!newRight.hasVariable()) {
+            int rightResult = newRight.safeEval();
             if (rightResult == 0) {
                 return new Number(0);
             }
             if (rightResult == 1) {
                 return newLeft;
             }
-        } catch (NotEnoughSignificationsExpression ignored) {
-            Utils.pass();
         }
-        try {
-            int leftResult = newRight.eval("");
+        if (!newLeft.hasVariable()) {
+            int leftResult = newLeft.safeEval();
             if (leftResult == 0) {
                 return new Number(0);
             }
             if (leftResult == 1) {
                 return newRight;
             }
-        } catch (NotEnoughSignificationsExpression ignored) {
-            Utils.pass();
         }
         return new Mul(newRight, newLeft);
+    }
+
+    @Override
+    protected int safeEval() {
+        return right.safeEval() * left.safeEval();
     }
 }

@@ -6,7 +6,7 @@ import java.util.HashMap;
  * Class for managing Number.
  */
 public class Number extends Expression {
-    protected int val;
+    protected final int val;
 
     /**
      * Construct new Number.
@@ -41,4 +41,16 @@ public class Number extends Expression {
     public Expression simplify() {
         return new Number(val);
     }
+
+    @Override
+    protected int safeEval() {
+        return val;
+    }
+
+    @Override
+    protected boolean hasVariable() {
+        return false;
+    }
+
+
 }

@@ -53,7 +53,7 @@ public class Parser {
     }
 
     private static char[] getSubstring(char[] chars, int start, int end) {
-        char[] ans = new char[end - start + 1];
+        char[] ans = new char[end - start];
         if (end - start >= 0) {
             System.arraycopy(chars, start, ans, 0, end - start);
         }
@@ -92,13 +92,13 @@ public class Parser {
                 case PLUS:
                     if (stack.empty()) {
                         return new Add(subExpression(chars, 0, i),
-                                subExpression(chars, i + 1, chars.length - 1));
+                                subExpression(chars, i + 1, chars.length));
                     }
                     break;
                 case MINUS:
                     if (stack.empty()) {
                         return new Sub(subExpression(chars, 0, i),
-                                subExpression(chars, i + 1, chars.length - 1));
+                                subExpression(chars, i + 1, chars.length));
                     }
                     break;
                 case MULTIPLICATION:
@@ -128,10 +128,10 @@ public class Parser {
         if (index != -1) {
             if (chars[index] == MULTIPLICATION) {
                 return new Mul(subExpression(chars, 0, index),
-                        subExpression(chars, index + 1, chars.length - 1));
+                        subExpression(chars, index + 1, chars.length));
             } else if (chars[index] == DIVISION) {
                 return new Div(subExpression(chars, 0, index),
-                        subExpression(chars, index + 1, chars.length - 1));
+                        subExpression(chars, index + 1, chars.length));
             }
         }
         if (isDecimal(chars)) {
