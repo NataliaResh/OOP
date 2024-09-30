@@ -4,17 +4,24 @@ import java.util.*;
 
 public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     private static final double FACTOR = 0.75;
-    private int capacity = 32;
+    private int capacity = 4;
     private int size = 0;
-    private LinkedList<Pair<K, V>>[] hashTable = new LinkedList[capacity];
+    private LinkedList<Pair<K, V>>[] hashTable;
 
     public int getSize() {
         return size;
     }
 
+    private LinkedList<Pair<K, V>>[] initHashTable() {
+        LinkedList<Pair<K, V>>[] hashTable = new LinkedList[capacity];
+        for (int i = 0; i < capacity; i++) {
+            hashTable[i] = new LinkedList<>();
+        }
+        return hashTable;
+    }
     private void rehash() {
         capacity *= 2;
-        LinkedList<Pair<K, V>>[] newHashTable = new LinkedList[capacity];
+        LinkedList<Pair<K, V>>[] newHashTable = initHashTable();
         for (Pair<K, V> pair: this) {
             int hash = getHash(pair.key);
             newHashTable[hash].add(pair);
@@ -23,7 +30,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     }
 
     public void put(K key, V value) {
-        if ((double) size / capacity < FACTOR) {
+        if (capacity / (double) size < FACTOR) {
             rehash();
         }
         int hash = getHash(key);
@@ -66,7 +73,11 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
 
     @Override
     public String toString() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        for (Pair<K, V> pair: this) {
+            str.append(pair.key).append(" : ").append(pair.value).append("\n");
+        }
+        return str.toString();
     }
 
     public void remove(K key) {
@@ -75,18 +86,13 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         hashTable[hash].remove(pair);
     }
 
-    public V forEach() {
-        return null;
-    }
-
 
     public boolean equal(HashTable<K, V> map) {
         return true;
     }
 
     public HashTable() {
-        HashMap<Integer, Integer> map = new HashMap<>();
-
+        hashTable = initHashTable();
     }
 
     @Override
@@ -111,12 +117,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
                 return chainIterator.next();
             }
             while (!chainIterator.hasNext()) {
-                index++;
                 if (index >= capacity) {
                     throw new NoSuchElementException("No more elements in this word!");
                 }
                 chainIterator = hashTable[index].iterator();
             }
+            index++;
             return chainIterator.next();
         }
     }
