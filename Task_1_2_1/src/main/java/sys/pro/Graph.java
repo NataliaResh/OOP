@@ -1,6 +1,7 @@
 package sys.pro;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,9 +12,16 @@ import java.util.Collections;
  */
 public interface Graph {
     /**
-     * Returns max count of nodes.
+     * Returns count of nodes.
      *
-     * @return max count of nodes.
+     * @return count of nodes.
+     */
+    int getNodesCount();
+
+    /**
+     * Returns capacity of nodes.
+     *
+     * @return capacity of nodes.
      */
     int getNodesCapacity();
 
@@ -28,8 +36,9 @@ public interface Graph {
      * Removes the node from the graph.
      *
      * @param node node for removing.
+     * @return true if node was in graph.
      */
-    void removeNode(Integer node);
+    boolean removeNode(Integer node);
 
     /**
      * Adds new edge.
@@ -44,8 +53,9 @@ public interface Graph {
      *
      * @param from start node of the edge;
      * @param to   finish node of the edge.
+     * @return true if edge was in graph.
      */
-    void removeEdge(Integer from, Integer to);
+    boolean removeEdge(Integer from, Integer to);
 
     /**
      * Return array with neighbours of the node.
@@ -71,27 +81,23 @@ public interface Graph {
      *
      * @param fileName name of file.
      */
-    default void buildFromFile(String fileName) {
+    default void buildFromFile(String fileName) throws IncorrectFormatException, IOException {
         BufferedReader reader;
-        try {
-            reader = new BufferedReader((new FileReader(fileName)));
-            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
-                String[] result = line.split(" ");
-                if (result.length != 2) {
-                    Utils.exit("Incorrect format of file!");
-                }
-                try {
-                    int from = Integer.parseInt(result[0]);
-                    int to = Integer.parseInt(result[1]);
-                    addEdge(from, to);
-                } catch (Exception e) {
-                    Utils.exit("Incorrect type of node!");
-                }
+        reader = new BufferedReader((new FileReader(fileName)));
+        for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+            String[] result = line.split(" ");
+            if (result.length != 2) {
+                throw new IncorrectFormatException(fileName, line);
             }
-            reader.close();
-        } catch (IOException e) {
-            Utils.exit("Incorrect file " + fileName);
+            try {
+                int from = Integer.parseInt(result[0]);
+                int to = Integer.parseInt(result[1]);
+                addEdge(from, to);
+            } catch (NumberFormatException e) {
+                throw new IncorrectFormatException(fileName, line);
+            }
         }
+        reader.close();
     }
 
     /**
@@ -101,7 +107,7 @@ public interface Graph {
      * @return true if graphs are equal.
      */
     default boolean isEqual(Graph graph) {
-        if (getNodesCapacity() != graph.getNodesCapacity()) {
+        if (getNodesCount() != graph.getNodesCount()) {
             return false;
         }
         for (int i = 0; i < getNodesCapacity(); i++) {

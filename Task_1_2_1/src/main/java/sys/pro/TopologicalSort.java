@@ -25,7 +25,7 @@ public class TopologicalSort {
     }
 
     /**
-     * Implements topological sort and return right sequences of nodes.
+     * Implements topological sort with dfs and return right sequences of nodes.
      *
      * @param graph current graph.
      * @return right sequences of nodes.

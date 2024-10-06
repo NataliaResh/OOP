@@ -1,5 +1,6 @@
 package sys.pro;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.HashMap;
  */
 public class ListGraph implements Graph {
     private int nodesCapacity = 16;
-    private HashMap<Integer, ArrayList<Integer>> graph = new HashMap<>();
+    private final HashMap<Integer, ArrayList<Integer>> graph = new HashMap<>();
 
     /**
      * Constructor of graph with adjacency list.
@@ -19,11 +20,21 @@ public class ListGraph implements Graph {
 
     /**
      * Constructor of graph with adjacency list from file.
+     *
+     * @param fileName name of file.
+     * @throws IncorrectFormatException if format of graph in the file is incorrect.
+     * @throws IOException              if there are some problems with the file.
      */
-    public ListGraph(String fileName) {
+    public ListGraph(String fileName) throws IncorrectFormatException, IOException {
         buildFromFile(fileName);
     }
 
+    @Override
+    public int getNodesCount() {
+        return graph.size();
+    }
+
+    @Override
     public int getNodesCapacity() {
         return nodesCapacity;
     }
@@ -37,23 +48,20 @@ public class ListGraph implements Graph {
     }
 
     @Override
-    public void removeNode(Integer node) {
-        checkNode(node);
+    public boolean removeNode(Integer node) {
+        if (!isConsistNode(node)) {
+            return false;
+        }
         graph.remove(node);
         for (ArrayList<Integer> nodes : graph.values()) {
             nodes.remove(node);
         }
+        return true;
     }
 
     @Override
     public boolean isConsistNode(Integer node) {
         return graph.containsKey(node);
-    }
-
-    private void checkNode(Integer node) {
-        if (!isConsistNode(node)) {
-            Utils.exit("Node is not in graph!");
-        }
     }
 
     @Override
@@ -68,15 +76,18 @@ public class ListGraph implements Graph {
     }
 
     @Override
-    public void removeEdge(Integer from, Integer to) {
-        checkNode(from);
-        checkNode(to);
-        graph.get(from).remove(to);
+    public boolean removeEdge(Integer from, Integer to) {
+        if (!isConsistNode(from)) {
+            return false;
+        }
+        return graph.get(from).remove(to);
     }
 
     @Override
     public Integer[] getNeighbours(Integer node) {
-        checkNode(node);
+        if (!isConsistNode(node)) {
+            return null;
+        }
         Integer[] neighbours = graph.get(node).toArray(new Integer[0]);
         return Arrays.copyOf(neighbours, neighbours.length);
     }
