@@ -1,9 +1,9 @@
 package sys.pro;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
-
-import java.io.IOException;
 
 /**
  * Class for testing AdjacencyMatrixGraph.
@@ -12,7 +12,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void buildFromFileTest1() {
         try {
-            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
+            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/1.in");
             Integer[] result = {2, 6};
             Assert.assertEquals(matrix.getNeighbours(3), result);
             Assert.assertNull(matrix.getNeighbours(10));
@@ -24,7 +25,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void buildFromFileTest2() {
         try {
-            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/fail.in");
+            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/fail.in");
             Assert.fail();
         } catch (IOException e) {
             Assert.assertTrue(true);
@@ -36,7 +38,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void buildFromFileTest3() {
         try {
-            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/incorrectFormat");
+            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/incorrectFormat");
             Assert.fail();
         } catch (IncorrectFormatException e) {
             Assert.assertTrue(true);
@@ -48,7 +51,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void buildFromFileTest4() {
         try {
-            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/noNumber");
+            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/noNumber");
             Assert.fail();
         } catch (IncorrectFormatException e) {
             Assert.assertTrue(true);
@@ -60,7 +64,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void topSortTest() {
         try {
-            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
+            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/1.in");
             Integer[] topSortMatrix = TopologicalSort.topSort(matrix);
             Integer[] ans = {5, 4, 3, 6, 2, 1};
             Assert.assertEquals(topSortMatrix, ans);
@@ -72,7 +77,8 @@ public class AdjacencyMatrixGraphTest {
     @Test
     public void toStringTest() {
         try {
-            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
+            AdjacencyMatrixGraph matrix = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/1.in");
             String result = matrix.toString();
             String ans = "1: \n2: 1\n3: 2, 6\n4: 1\n5: 4\n6: \n";
             Assert.assertEquals(result, ans);
@@ -93,7 +99,8 @@ public class AdjacencyMatrixGraphTest {
         matrix.addNode(6);
         matrix.addEdge(3, 6);
         try {
-            AdjacencyMatrixGraph result = new AdjacencyMatrixGraph("build/resources/test/tests/1.in");
+            AdjacencyMatrixGraph result = new AdjacencyMatrixGraph(
+                    "build/resources/test/tests/1.in");
             Assert.assertTrue(matrix.isEqual(result));
         } catch (IncorrectFormatException | IOException e) {
             Assert.fail();
@@ -184,4 +191,16 @@ public class AdjacencyMatrixGraphTest {
         Assert.assertFalse(graph1.isEqual(graph2));
     }
 
+    @Test
+    public void noEqualTest3() {
+        AdjacencyMatrixGraph graph1 = new AdjacencyMatrixGraph();
+        AdjacencyMatrixGraph graph2 = new AdjacencyMatrixGraph();
+        int nodeCount = 20;
+        for (int i = 0; i < nodeCount; i++) {
+            graph1.addEdge(0, i);
+            graph2.addEdge(0, i + 1);
+        }
+        graph1.addNode(nodeCount);
+        Assert.assertFalse(graph1.isEqual(graph2));
+    }
 }
