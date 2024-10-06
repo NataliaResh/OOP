@@ -91,7 +91,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </nav>
 </header>
 <main role="main">
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -142,16 +142,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  where every line set edge from the node <code>from</code> to the node <code>to</code>.</div>
 </dd>
 </dl>
-<a id="I:E">
-<!--   -->
-</a>
-<h2 class="title">E</h2>
-<dl>
-<dt><span class="memberNameLink"><a href="sys/pro/Utils.html#exit(java.lang.String)">exit(String)</a></span> - Static method in class sys.pro.<a href="sys/pro/Utils.html" title="class in sys.pro">Utils</a></dt>
-<dd>
-<div class="block">Exits from program.</div>
-</dd>
-</dl>
 <a id="I:G">
 <!--   -->
 </a>
@@ -171,11 +161,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="sys/pro/Graph.html#getNodesCapacity()">getNodesCapacity()</a></span> - Method in interface sys.pro.<a href="sys/pro/Graph.html" title="interface in sys.pro">Graph</a></dt>
 <dd>
-<div class="block">Returns max count of nodes.</div>
+<div class="block">Returns capacity of nodes.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="sys/pro/IncidenceMatrixGraph.html#getNodesCapacity()">getNodesCapacity()</a></span> - Method in class sys.pro.<a href="sys/pro/IncidenceMatrixGraph.html" title="class in sys.pro">IncidenceMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="sys/pro/ListGraph.html#getNodesCapacity()">getNodesCapacity()</a></span> - Method in class sys.pro.<a href="sys/pro/ListGraph.html" title="class in sys.pro">ListGraph</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="sys/pro/AdjacencyMatrixGraph.html#getNodesCount()">getNodesCount()</a></span> - Method in class sys.pro.<a href="sys/pro/AdjacencyMatrixGraph.html" title="class in sys.pro">AdjacencyMatrixGraph</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="sys/pro/Graph.html#getNodesCount()">getNodesCount()</a></span> - Method in interface sys.pro.<a href="sys/pro/Graph.html" title="interface in sys.pro">Graph</a></dt>
+<dd>
+<div class="block">Returns count of nodes.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="sys/pro/IncidenceMatrixGraph.html#getNodesCount()">getNodesCount()</a></span> - Method in class sys.pro.<a href="sys/pro/IncidenceMatrixGraph.html" title="class in sys.pro">IncidenceMatrixGraph</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="sys/pro/ListGraph.html#getNodesCount()">getNodesCount()</a></span> - Method in class sys.pro.<a href="sys/pro/ListGraph.html" title="class in sys.pro">ListGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="sys/pro/Graph.html" title="interface in sys.pro"><span class="typeNameLink">Graph</span></a> - Interface in <a href="sys/pro/package-summary.html">sys.pro</a></dt>
 <dd>
@@ -198,6 +198,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="sys/pro/IncidenceMatrixGraph.html#%3Cinit%3E(java.lang.String)">IncidenceMatrixGraph(String)</a></span> - Constructor for class sys.pro.<a href="sys/pro/IncidenceMatrixGraph.html" title="class in sys.pro">IncidenceMatrixGraph</a></dt>
 <dd>
 <div class="block">Constructor of graph with incidence matrix from file.</div>
+</dd>
+<dt><a href="sys/pro/IncorrectFormatException.html" title="class in sys.pro"><span class="typeNameLink">IncorrectFormatException</span></a> - Exception in <a href="sys/pro/package-summary.html">sys.pro</a></dt>
+<dd>
+<div class="block">Class of Incorrect Format Exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="sys/pro/IncorrectFormatException.html#%3Cinit%3E(java.lang.String,java.lang.String)">IncorrectFormatException(String, String)</a></span> - Constructor for exception sys.pro.<a href="sys/pro/IncorrectFormatException.html" title="class in sys.pro">IncorrectFormatException</a></dt>
+<dd>
+<div class="block">Construct new exception.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="sys/pro/AdjacencyMatrixGraph.html#isConsistNode(java.lang.Integer)">isConsistNode(Integer)</a></span> - Method in class sys.pro.<a href="sys/pro/AdjacencyMatrixGraph.html" title="class in sys.pro">AdjacencyMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
@@ -279,7 +287,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="sys/pro/TopologicalSort.html#topSort(sys.pro.Graph)">topSort(Graph)</a></span> - Static method in class sys.pro.<a href="sys/pro/TopologicalSort.html" title="class in sys.pro">TopologicalSort</a></dt>
 <dd>
-<div class="block">Implements topological sort and return right sequences of nodes.</div>
+<div class="block">Implements topological sort with dfs and return right sequences of nodes.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="sys/pro/AdjacencyMatrixGraph.html#toString()">toString()</a></span> - Method in class sys.pro.<a href="sys/pro/AdjacencyMatrixGraph.html" title="class in sys.pro">AdjacencyMatrixGraph</a></dt>
 <dd>
@@ -298,19 +306,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Returns graph as string.</div>
 </dd>
 </dl>
-<a id="I:U">
-<!--   -->
-</a>
-<h2 class="title">U</h2>
-<dl>
-<dt><a href="sys/pro/Utils.html" title="class in sys.pro"><span class="typeNameLink">Utils</span></a> - Class in <a href="sys/pro/package-summary.html">sys.pro</a></dt>
-<dd>
-<div class="block">Class for managing useful functions.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="sys/pro/Utils.html#%3Cinit%3E()">Utils()</a></span> - Constructor for class sys.pro.<a href="sys/pro/Utils.html" title="class in sys.pro">Utils</a></dt>
-<dd>&nbsp;</dd>
-</dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">

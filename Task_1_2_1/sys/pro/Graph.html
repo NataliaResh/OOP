@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":18,"i7":6,"i8":6,"i9":1};
+var data = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":18,"i8":6,"i9":6,"i10":1};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -184,39 +184,46 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNodesCapacity()">getNodesCapacity</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns max count of nodes.</div>
+<div class="block">Returns capacity of nodes.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNodesCount()">getNodesCount</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns count of nodes.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isConsistNode(java.lang.Integer)">isConsistNode</a></span>&#8203;(java.lang.Integer&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Checks if there is the node in the graph.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>default boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEqual(sys.pro.Graph)">isEqual</a></span>&#8203;(<a href="Graph.html" title="interface in sys.pro">Graph</a>&nbsp;graph)</code></th>
 <td class="colLast">
 <div class="block">Returns true if graphs are equal.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(java.lang.Integer,java.lang.Integer)">removeEdge</a></span>&#8203;(java.lang.Integer&nbsp;from,
           java.lang.Integer&nbsp;to)</code></th>
 <td class="colLast">
 <div class="block">Removes the edge.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeNode(java.lang.Integer)">removeNode</a></span>&#8203;(java.lang.Integer&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Removes the node from the graph.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toStringImpl(sys.pro.Graph)">toStringImpl</a></span>&#8203;(<a href="Graph.html" title="interface in sys.pro">Graph</a>&nbsp;graph)</code></th>
 <td class="colLast">
@@ -240,6 +247,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getNodesCount()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNodesCount</h4>
+<pre class="methodSignature">int&nbsp;getNodesCount()</pre>
+<div class="block">Returns count of nodes.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>count of nodes.</dd>
+</dl>
+</li>
+</ul>
 <a id="getNodesCapacity()">
 <!--   -->
 </a>
@@ -247,10 +268,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getNodesCapacity</h4>
 <pre class="methodSignature">int&nbsp;getNodesCapacity()</pre>
-<div class="block">Returns max count of nodes.</div>
+<div class="block">Returns capacity of nodes.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>max count of nodes.</dd>
+<dd>capacity of nodes.</dd>
 </dl>
 </li>
 </ul>
@@ -274,11 +295,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>removeNode</h4>
-<pre class="methodSignature">void&nbsp;removeNode&#8203;(java.lang.Integer&nbsp;node)</pre>
+<pre class="methodSignature">boolean&nbsp;removeNode&#8203;(java.lang.Integer&nbsp;node)</pre>
 <div class="block">Removes the node from the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - node for removing.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if node was in graph.</dd>
 </dl>
 </li>
 </ul>
@@ -304,13 +327,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>removeEdge</h4>
-<pre class="methodSignature">void&nbsp;removeEdge&#8203;(java.lang.Integer&nbsp;from,
-                java.lang.Integer&nbsp;to)</pre>
+<pre class="methodSignature">boolean&nbsp;removeEdge&#8203;(java.lang.Integer&nbsp;from,
+                   java.lang.Integer&nbsp;to)</pre>
 <div class="block">Removes the edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - start node of the edge;</dd>
 <dd><code>to</code> - finish node of the edge.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if edge was in graph.</dd>
 </dl>
 </li>
 </ul>
@@ -352,7 +377,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>buildFromFile</h4>
-<pre class="methodSignature">default&nbsp;void&nbsp;buildFromFile&#8203;(java.lang.String&nbsp;fileName)</pre>
+<pre class="methodSignature">default&nbsp;void&nbsp;buildFromFile&#8203;(java.lang.String&nbsp;fileName)
+                    throws <a href="IncorrectFormatException.html" title="class in sys.pro">IncorrectFormatException</a>,
+                           java.io.IOException</pre>
 <div class="block">Builds the graph from the file;
  Format of file:
  form to
@@ -360,6 +387,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>fileName</code> - name of file.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="IncorrectFormatException.html" title="class in sys.pro">IncorrectFormatException</a></code></dd>
+<dd><code>java.io.IOException</code></dd>
 </dl>
 </li>
 </ul>

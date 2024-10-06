@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -213,32 +213,39 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNodesCapacity()">getNodesCapacity</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns max count of nodes.</div>
+<div class="block">Returns capacity of nodes.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNodesCount()">getNodesCount</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns count of nodes.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isConsistNode(java.lang.Integer)">isConsistNode</a></span>&#8203;(java.lang.Integer&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Checks if there is the node in the graph.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(java.lang.Integer,java.lang.Integer)">removeEdge</a></span>&#8203;(java.lang.Integer&nbsp;from,
           java.lang.Integer&nbsp;to)</code></th>
 <td class="colLast">
 <div class="block">Removes the edge.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeNode(java.lang.Integer)">removeNode</a></span>&#8203;(java.lang.Integer&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Removes the node from the graph.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -292,8 +299,17 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>IncidenceMatrixGraph</h4>
-<pre>public&nbsp;IncidenceMatrixGraph&#8203;(java.lang.String&nbsp;fileName)</pre>
+<pre>public&nbsp;IncidenceMatrixGraph&#8203;(java.lang.String&nbsp;fileName)
+                     throws <a href="IncorrectFormatException.html" title="class in sys.pro">IncorrectFormatException</a>,
+                            java.io.IOException</pre>
 <div class="block">Constructor of graph with incidence matrix from file.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>fileName</code> - name of file.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="IncorrectFormatException.html" title="class in sys.pro">IncorrectFormatException</a></code> - if format of graph in the file is incorrect.</dd>
+<dd><code>java.io.IOException</code> - if there are some problems with the file.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -306,6 +322,23 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getNodesCount()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNodesCount</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getNodesCount()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#getNodesCount()">Graph</a></code></span></div>
+<div class="block">Returns count of nodes.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getNodesCount()">getNodesCount</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in sys.pro">Graph</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>count of nodes.</dd>
+</dl>
+</li>
+</ul>
 <a id="getNodesCapacity()">
 <!--   -->
 </a>
@@ -314,12 +347,12 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <h4>getNodesCapacity</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getNodesCapacity()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#getNodesCapacity()">Graph</a></code></span></div>
-<div class="block">Returns max count of nodes.</div>
+<div class="block">Returns capacity of nodes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#getNodesCapacity()">getNodesCapacity</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in sys.pro">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>max count of nodes.</dd>
+<dd>capacity of nodes.</dd>
 </dl>
 </li>
 </ul>
@@ -365,7 +398,7 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeNode</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeNode&#8203;(java.lang.Integer&nbsp;node)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;removeNode&#8203;(java.lang.Integer&nbsp;node)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#removeNode(java.lang.Integer)">Graph</a></code></span></div>
 <div class="block">Removes the node from the graph.</div>
 <dl>
@@ -373,6 +406,8 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <dd><code><a href="Graph.html#removeNode(java.lang.Integer)">removeNode</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in sys.pro">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - node for removing.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if node was in graph.</dd>
 </dl>
 </li>
 </ul>
@@ -401,8 +436,8 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeEdge</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(java.lang.Integer&nbsp;from,
-                       java.lang.Integer&nbsp;to)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;removeEdge&#8203;(java.lang.Integer&nbsp;from,
+                          java.lang.Integer&nbsp;to)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#removeEdge(java.lang.Integer,java.lang.Integer)">Graph</a></code></span></div>
 <div class="block">Removes the edge.</div>
 <dl>
@@ -411,6 +446,8 @@ implements <a href="Graph.html" title="interface in sys.pro">Graph</a></pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - start node of the edge;</dd>
 <dd><code>to</code> - finish node of the edge.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if edge was in graph.</dd>
 </dl>
 </li>
 </ul>
