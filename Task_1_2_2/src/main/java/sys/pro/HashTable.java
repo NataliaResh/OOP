@@ -19,10 +19,11 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         }
         return hashTable;
     }
+
     private void rehash() {
         capacity *= 2;
         LinkedList<Pair<K, V>>[] newHashTable = initHashTable();
-        for (Pair<K, V> pair: this) {
+        for (Pair<K, V> pair : this) {
             int hash = getHash(pair.key);
             newHashTable[hash].add(pair);
         }
@@ -74,7 +75,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (Pair<K, V> pair: this) {
+        for (Pair<K, V> pair : this) {
             str.append(pair.key).append(" : ").append(pair.value).append("\n");
         }
         return str.toString();
@@ -87,7 +88,29 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     }
 
 
-    public boolean equal(HashTable<K, V> map) {
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        HashTable<K, V> other = (HashTable<K, V>) obj;
+        if (getSize() != other.getSize()) {
+            return false;
+        }
+        for (Pair<K, V> pair : other) {
+            if (!containsKey(pair.key)) {
+                System.out.println(pair.key);
+                return false;
+            }
+            if (!this.get(pair.key).equals(pair.value)) {
+                System.out.println(get(pair.key));
+                System.out.println(pair.value);
+                return false;
+            }
+        }
         return true;
     }
 

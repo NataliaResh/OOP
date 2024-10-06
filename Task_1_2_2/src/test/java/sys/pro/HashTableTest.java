@@ -29,4 +29,16 @@ public class HashTableTest {
         map.put(2, "two");
         Assert.assertEquals(map.toString(), "1 : one\n2 : two\n3 : three\n");
     }
+
+    @Test
+    public void equalHashTableTest() {
+        HashTable<Integer, Integer> firstMap = new HashTable<>();
+        HashTable<Integer, Integer> secondMap = new HashTable<>();
+        int n = 1000;
+        for (int i = 0; i < n; i++) {
+            firstMap.put(i, n - i - 1);
+            secondMap.put(n - i - 1, i);
+        }
+        Assert.assertTrue(firstMap.equals(secondMap));
+    }
 }
