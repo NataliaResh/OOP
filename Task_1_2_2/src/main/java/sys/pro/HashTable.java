@@ -130,7 +130,11 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     public boolean remove(K key) {
         int hash = getHash(key);
         Pair<K, V> pair = find(key);
-        return hashTable[hash].remove(pair);
+        if (hashTable[hash].remove(pair)) {
+            size--;
+            return true;
+        }
+        return false;
     }
 
 
@@ -170,7 +174,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     }
 
     private class HTIterator implements Iterator<Pair<K, V>> {
-        private int index = 0;
+        private int index = -1;
         private int count = 0;
         private Iterator<Pair<K, V>> chainIterator = Collections.emptyIterator();
 

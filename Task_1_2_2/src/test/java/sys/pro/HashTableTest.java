@@ -29,6 +29,7 @@ public class HashTableTest {
         for (int i = 0; i < n; i++) {
             map.put(i, "a");
         }
+        Assert.assertFalse(map.remove(n + 1));
         for (int i = 31; i < 70; i++) {
             Assert.assertTrue(map.remove(i));
         }
@@ -53,13 +54,22 @@ public class HashTableTest {
     @Test
     public void equalHashTableTest() {
         HashTable<Integer, Integer> firstMap = new HashTable<>();
-        HashTable<Integer, Integer> secondMap = new HashTable<>();
+        Assert.assertTrue(firstMap.equals(firstMap));
+        HashTable<Integer, Integer> secondMap = null;
+        Assert.assertFalse(firstMap.equals(secondMap));
+        secondMap = new HashTable<>();
         int n = 1000;
         for (int i = 0; i < n; i++) {
             firstMap.put(i, n - i - 1);
             secondMap.put(n - i - 1, i);
         }
         Assert.assertTrue(firstMap.equals(secondMap));
+        secondMap.put(n, 0);
+        Assert.assertFalse(firstMap.equals(secondMap));
+        secondMap.remove(n);
+        Assert.assertTrue(firstMap.equals(secondMap));
+        secondMap.updateValue(1, 42);
+        Assert.assertFalse(firstMap.equals(secondMap));
     }
 
     @Test
