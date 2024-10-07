@@ -22,6 +22,25 @@ public class HashTableTest {
     }
 
     @Test
+    public void removeTest() {
+        HashTable<Integer, String> map = new HashTable<>();
+        int n = 100;
+        for (int i = 0; i < n; i++) {
+            map.put(i, "a");
+        }
+        for (int i = 31; i < 70; i++) {
+            Assert.assertTrue(map.remove(i));
+        }
+        for (int i = 0; i < n; i++) {
+            if (i >= 31 && i < 70) {
+                Assert.assertFalse(map.containsKey(i));
+            } else {
+                Assert.assertTrue(map.containsKey(i));
+            }
+        }
+    }
+
+    @Test
     public void toStringHashTableTest() {
         HashTable<Integer, String> map = new HashTable<>();
         map.put(1, "one");
@@ -40,5 +59,19 @@ public class HashTableTest {
             secondMap.put(n - i - 1, i);
         }
         Assert.assertTrue(firstMap.equals(secondMap));
+    }
+
+    @Test
+    public void updateTest() {
+        HashTable<Integer, String> map = new HashTable<>();
+        int n = 100;
+        for (int i = 0; i < n; i++) {
+            map.put(i, "a");
+        }
+        for (int i = 0; i < n; i++) {
+            Assert.assertEquals(map.get(i), "a");
+            map.updateValue(i, "b");
+            Assert.assertEquals(map.get(i), "b");
+        }
     }
 }

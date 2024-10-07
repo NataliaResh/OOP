@@ -46,7 +46,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     private Pair<K, V> find(K key) {
         int hash = getHash(key);
         for (Pair<K, V> pair : hashTable[hash]) {
-            if (pair.key == key) {
+            if (pair.key.equals(key)) {
                 return pair;
             }
         }
@@ -81,10 +81,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         return str.toString();
     }
 
-    public void remove(K key) {
+    public boolean remove(K key) {
         int hash = getHash(key);
         Pair<K, V> pair = find(key);
-        hashTable[hash].remove(pair);
+        return hashTable[hash].remove(pair);
     }
 
 
@@ -102,12 +102,9 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         }
         for (Pair<K, V> pair : other) {
             if (!containsKey(pair.key)) {
-                System.out.println(pair.key);
                 return false;
             }
             if (!this.get(pair.key).equals(pair.value)) {
-                System.out.println(get(pair.key));
-                System.out.println(pair.value);
                 return false;
             }
         }
