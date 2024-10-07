@@ -111,7 +111,7 @@ public class AdjacencyMatrixGraphTest {
     public void resizeTest() {
         AdjacencyMatrixGraph graph = new AdjacencyMatrixGraph();
         graph.addNode(1000);
-        Assert.assertEquals(graph.getNodesCapacity(), 1024);
+        Assert.assertEquals(graph.getMaxNodeNumber(), 1000);
         Assert.assertTrue(graph.isConsistNode(1000));
     }
 

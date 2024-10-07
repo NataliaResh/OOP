@@ -72,7 +72,7 @@ public class ListGraphTest {
     public void resizeTest() {
         ListGraph graph = new ListGraph();
         graph.addNode(1000);
-        Assert.assertEquals(graph.getNodesCapacity(), 1001);
+        Assert.assertEquals(graph.getMaxNodeNumber(), 1000);
         Assert.assertTrue(graph.isConsistNode(1000));
     }
 

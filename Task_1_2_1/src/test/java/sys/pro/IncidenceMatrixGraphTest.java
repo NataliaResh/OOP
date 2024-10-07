@@ -72,7 +72,7 @@ public class IncidenceMatrixGraphTest {
     public void resizeTest() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph();
         graph.addNode(1000);
-        Assert.assertEquals(graph.getNodesCapacity(), 1024);
+        Assert.assertEquals(graph.getMaxNodeNumber(), 1000);
         Assert.assertTrue(graph.isConsistNode(1000));
     }
 

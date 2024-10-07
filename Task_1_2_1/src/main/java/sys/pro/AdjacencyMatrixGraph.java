@@ -3,13 +3,15 @@ package sys.pro;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.Math.max;
+
 /**
  * Class for managing graph with adjacency matrix.
  */
 public class AdjacencyMatrixGraph implements Graph {
     private int nodesCapacity = 16;
-
     private int nodesCount = 0;
+    private int maxNode = -1;
     private boolean[][] graph = new boolean[nodesCapacity][nodesCapacity];
     private boolean[] consistedNodes = new boolean[nodesCapacity];
 
@@ -36,8 +38,8 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     @Override
-    public int getNodesCapacity() {
-        return nodesCapacity;
+    public int getMaxNodeNumber() {
+        return maxNode;
     }
 
     @Override
@@ -45,6 +47,7 @@ public class AdjacencyMatrixGraph implements Graph {
         while (node >= nodesCapacity) {
             resizeGraph();
         }
+        maxNode = max(node, maxNode);
         consistedNodes[node] = true;
         nodesCount++;
     }
@@ -120,11 +123,6 @@ public class AdjacencyMatrixGraph implements Graph {
         return neighbours.toArray(new Integer[0]);
     }
 
-    /**
-     * Returns graph as string.
-     *
-     * @return string of graph.
-     */
     @Override
     public String toString() {
         return Graph.toStringImpl(this);

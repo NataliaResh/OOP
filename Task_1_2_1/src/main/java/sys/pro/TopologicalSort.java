@@ -32,8 +32,8 @@ public class TopologicalSort {
      */
     public static Integer[] topSort(Graph graph) {
         Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[graph.getNodesCapacity()];
-        for (int i = 0; i < graph.getNodesCapacity(); i++) {
+        boolean[] visited = new boolean[graph.getMaxNodeNumber() + 1];
+        for (int i = 0; i < graph.getMaxNodeNumber(); i++) {
             if (graph.isConsistNode(i) && !visited[i]) {
                 dfs(i, graph, visited, stack);
             }

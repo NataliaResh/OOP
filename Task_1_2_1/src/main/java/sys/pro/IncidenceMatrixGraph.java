@@ -2,6 +2,9 @@ package sys.pro;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static java.lang.Math.max;
 
 /**
  * Class for managing graph with incidence matrix.
@@ -11,6 +14,7 @@ public class IncidenceMatrixGraph implements Graph {
     private int edgesCapacity = 16;
     private int edgesCount = 0;
     private int nodesCount = 0;
+    private int maxNode = -1;
     private int[][] graph = new int[nodesCapacity][edgesCapacity];
     private boolean[] consistedNodes = new boolean[nodesCapacity];
 
@@ -37,8 +41,8 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     @Override
-    public int getNodesCapacity() {
-        return nodesCapacity;
+    public int getMaxNodeNumber() {
+        return maxNode;
     }
 
     @Override
@@ -46,6 +50,7 @@ public class IncidenceMatrixGraph implements Graph {
         while (node >= nodesCapacity) {
             resizeGraphNodes();
         }
+        maxNode = max(node, maxNode);
         consistedNodes[node] = true;
         nodesCount++;
     }
@@ -152,11 +157,7 @@ public class IncidenceMatrixGraph implements Graph {
         return neighbours.toArray(new Integer[0]);
     }
 
-    /**
-     * Returns graph as string.
-     *
-     * @return string of graph.
-     */
+
     @Override
     public String toString() {
         return Graph.toStringImpl(this);

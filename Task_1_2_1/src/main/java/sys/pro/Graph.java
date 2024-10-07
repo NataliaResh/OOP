@@ -17,11 +17,11 @@ public interface Graph {
     int getNodesCount();
 
     /**
-     * Returns capacity of nodes.
+     * Returns max node's number.
      *
-     * @return capacity of nodes.
+     * @return max node's number.
      */
-    int getNodesCapacity();
+    int getMaxNodeNumber();
 
     /**
      * Adds new node to the graph.
@@ -108,7 +108,7 @@ public interface Graph {
         if (getNodesCount() != graph.getNodesCount()) {
             return false;
         }
-        for (int i = 0; i < getNodesCapacity(); i++) {
+        for (int i = 0; i < getMaxNodeNumber(); i++) {
             if (isConsistNode(i) != graph.isConsistNode(i)) {
                 return false;
             }
@@ -129,7 +129,7 @@ public interface Graph {
      */
     static String toStringImpl(Graph graph) {
         StringBuilder ans = new StringBuilder();
-        for (int i = 0; i < graph.getNodesCapacity(); i++) {
+        for (int i = 0; i <= graph.getMaxNodeNumber(); i++) {
             if (graph.isConsistNode(i)) {
                 ans.append(i).append(": ");
                 String neighbours = Arrays.toString(graph.getNeighbours(i));

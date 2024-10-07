@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import static java.lang.Math.max;
+
 /**
  * Class for managing graph with adjacency list.
  */
 public class ListGraph implements Graph {
-    private int nodesCapacity = 16;
+    private int maxNode = -1;
     private final HashMap<Integer, ArrayList<Integer>> graph = new HashMap<>();
 
     /**
@@ -35,15 +37,15 @@ public class ListGraph implements Graph {
     }
 
     @Override
-    public int getNodesCapacity() {
-        return nodesCapacity;
+    public int getMaxNodeNumber() {
+        return maxNode;
     }
 
     @Override
     public void addNode(Integer node) {
         if (!graph.containsKey(node)) {
             graph.put(node, new ArrayList<>());
-            nodesCapacity = Math.max(nodesCapacity, node + 1);
+            maxNode = max(maxNode, node);
         }
     }
 
@@ -92,11 +94,6 @@ public class ListGraph implements Graph {
         return Arrays.copyOf(neighbours, neighbours.length);
     }
 
-    /**
-     * Returns graph as string.
-     *
-     * @return string of graph.
-     */
     @Override
     public String toString() {
         return Graph.toStringImpl(this);
