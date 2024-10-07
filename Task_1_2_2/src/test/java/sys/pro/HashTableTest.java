@@ -3,8 +3,9 @@ package sys.pro;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
-import java.util.HashMap;
-
+/**
+ * Class for testing HashTable.
+ */
 public class HashTableTest {
     @Test
     public void createHashTableTest() {

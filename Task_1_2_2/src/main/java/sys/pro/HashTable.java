@@ -1,13 +1,29 @@
 package sys.pro;
 
-import java.util.*;
 
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+
+
+/**
+ * Class for managing Hash Table.
+ *
+ * @param <K> type of key;
+ * @param <V> type of value.
+ */
 public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     private static final double FACTOR = 0.75;
     private int capacity = 4;
     private int size = 0;
     private LinkedList<Pair<K, V>>[] hashTable;
 
+    /**
+     * Returns size of the hashtable.
+     *
+     * @return size of the hashtable.
+     */
     public int getSize() {
         return size;
     }
@@ -30,6 +46,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         hashTable = newHashTable;
     }
 
+    /**
+     * Puts key with value in the hashtable.
+     *
+     * @param key   key;
+     * @param value value.
+     */
     public void put(K key, V value) {
         if (capacity / (double) size < FACTOR) {
             rehash();
@@ -53,6 +75,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         return null;
     }
 
+    /**
+     * Returns value of key.
+     *
+     * @param key key.
+     * @return value of key.
+     */
     public V get(K key) {
         Pair<K, V> pair = find(key);
         if (pair != null) {
@@ -61,10 +89,22 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         return null;
     }
 
+    /**
+     * Returns true if key in hashtable.
+     *
+     * @param key key.
+     * @return true if key in hashtable.
+     */
     public boolean containsKey(K key) {
         return get(key) != null;
     }
 
+    /**
+     * Updates value of key.
+     *
+     * @param key   key;
+     * @param value new value.
+     */
     public void updateValue(K key, V value) {
         Pair<K, V> pair = find(key);
         if (pair != null) {
@@ -81,6 +121,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         return str.toString();
     }
 
+    /**
+     * Removes key with value in hashtable.
+     *
+     * @param key key.
+     * @return true if key was in hashtable.
+     */
     public boolean remove(K key) {
         int hash = getHash(key);
         Pair<K, V> pair = find(key);
@@ -111,6 +157,9 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         return true;
     }
 
+    /**
+     * Constructor for HashTable.
+     */
     public HashTable() {
         hashTable = initHashTable();
     }
@@ -137,12 +186,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
                 return chainIterator.next();
             }
             while (!chainIterator.hasNext()) {
+                index++;
                 if (index >= capacity) {
                     throw new NoSuchElementException("No more elements in this word!");
                 }
                 chainIterator = hashTable[index].iterator();
             }
-            index++;
             return chainIterator.next();
         }
     }
