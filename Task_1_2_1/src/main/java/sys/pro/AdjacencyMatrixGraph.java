@@ -2,8 +2,7 @@ package sys.pro;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import static java.lang.Math.max;
+import java.lang.Math;
 
 /**
  * Class for managing graph with adjacency matrix.
@@ -47,7 +46,7 @@ public class AdjacencyMatrixGraph implements Graph {
         while (node >= nodesCapacity) {
             resizeGraph();
         }
-        maxNode = max(node, maxNode);
+        maxNode = Math.max(node, maxNode);
         consistedNodes[node] = true;
         nodesCount++;
     }

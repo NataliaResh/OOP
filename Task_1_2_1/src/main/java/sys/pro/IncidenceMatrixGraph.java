@@ -2,9 +2,7 @@ package sys.pro;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import static java.lang.Math.max;
+import java.lang.Math;
 
 /**
  * Class for managing graph with incidence matrix.
@@ -50,7 +48,7 @@ public class IncidenceMatrixGraph implements Graph {
         while (node >= nodesCapacity) {
             resizeGraphNodes();
         }
-        maxNode = max(node, maxNode);
+        maxNode = Math.max(node, maxNode);
         consistedNodes[node] = true;
         nodesCount++;
     }

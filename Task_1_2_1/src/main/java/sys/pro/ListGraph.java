@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-
-import static java.lang.Math.max;
+import java.lang.Math;
 
 /**
  * Class for managing graph with adjacency list.
@@ -45,7 +44,7 @@ public class ListGraph implements Graph {
     public void addNode(Integer node) {
         if (!graph.containsKey(node)) {
             graph.put(node, new ArrayList<>());
-            maxNode = max(maxNode, node);
+            maxNode = Math.max(maxNode, node);
         }
     }
 
