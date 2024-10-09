@@ -1,10 +1,7 @@
 package sys.pro;
 
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 
 /**
@@ -17,6 +14,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     private static final double FACTOR = 0.75;
     private int capacity = 4;
     private int size = 0;
+    private int expectedModCount = 0;
     private LinkedList<Pair<K, V>>[] hashTable;
 
     /**
@@ -59,6 +57,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         int hash = getHash(key);
         hashTable[hash].add(new Pair<>(key, value));
         size++;
+        expectedModCount++;
     }
 
     private int getHash(K key) {
@@ -109,6 +108,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         Pair<K, V> pair = find(key);
         if (pair != null) {
             pair.value = value;
+            expectedModCount++;
         }
     }
 
@@ -132,6 +132,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         Pair<K, V> pair = find(key);
         if (hashTable[hash].remove(pair)) {
             size--;
+            expectedModCount++;
             return true;
         }
         return false;
@@ -176,8 +177,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     private class HTIterator implements Iterator<Pair<K, V>> {
         private int index = -1;
         private int count = 0;
+        private int modCount;
         private Iterator<Pair<K, V>> chainIterator = Collections.emptyIterator();
 
+        public HTIterator() {
+            modCount = expectedModCount;
+        }
         @Override
         public boolean hasNext() {
             return count < getSize();
@@ -185,6 +190,9 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
 
         @Override
         public Pair<K, V> next() {
+            if (modCount != expectedModCount) {
+                throw new ConcurrentModificationException();
+            }
             count++;
             if (chainIterator.hasNext()) {
                 return chainIterator.next();
@@ -192,7 +200,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             while (!chainIterator.hasNext()) {
                 index++;
                 if (index >= capacity) {
-                    throw new NoSuchElementException("No more elements in this word!");
+                    throw new NoSuchElementException();
                 }
                 chainIterator = hashTable[index].iterator();
             }

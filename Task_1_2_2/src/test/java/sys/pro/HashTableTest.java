@@ -1,7 +1,10 @@
 package sys.pro;
 
+import com.beust.ah.A;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
+
+import java.util.ConcurrentModificationException;
 
 /**
  * Class for testing HashTable.
@@ -85,4 +88,25 @@ public class HashTableTest {
             Assert.assertEquals(map.get(i), "b");
         }
     }
+
+    @Test
+    public void exceptionTest() {
+        HashTable<Integer, Integer> map = new HashTable<>();
+        for (int i = 0; i < 5; i++) {
+            map.put(i, i * i);
+        }
+        boolean wasException = false;
+        try {
+            for (Pair<Integer, Integer> pair : map) {
+                map.remove(1);
+            }
+        } catch (ConcurrentModificationException e) {
+            Assert.assertTrue(true);
+            wasException = true;
+        }
+        if (!wasException) {
+            Assert.fail();
+        }
+    }
+
 }
